@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        p{
+            font-style: italic; /* 기울림꼴 */
+        }
+        .ptag{
+            color: blue;
+        }
+        #hong{
+            color: rgb(16, 102, 20);
+        }
+        p:hover{
+            color: deeppink;
+        }
+        p:nth-child(even){
+            color: bisque;
+        }
+        body>p{
+            /* 부모>자식 */
+        }
+        html p{
+            /*조상 자식*/
+        }
+        p#hong{
+            /*p tag 중 아이디가 hong인 요소*/
+        }
+    </style>
+</head>
+<body>
+    <p class="ptag" id="hong">Hello~!! hongGilDong</p>
+    <p class="ptag">Hello~!! hongGilDong</p>
+    <p>Hello~!! hongGilDong</p>
+    <p>Hello~!! hongGilDong</p>
+    <p>Hello~!! hongGilDong</p>
+    <!-- 
+        선택자 (selector)
+        - 요소(태그요소:엘리먼트 element)를 선택하게 하는 이름
+        - id 선택자 : #아이디명 => 한페이지에 1개 또는 0개
+        - class 선택자 : .클래스명 => 여러개 가능(같은 클래스는 같은 스타일에 영향을 받음)
+        - tagName 선택자 : 태그명 (같은 태그명에 같은 스타일을 적용)
+
+        - 가상클래스 선택자 : 가상클래스명
+            - 어떤 조건이나 상황에서 스타일을 적용하도록 만든 선택자
+            - 앞에 대상의 선택자가 나오고, 뒤에 가상클래스의 선택자 나옴.
+            - :hover : 앞의 요소가 마우스를 올렸을 때 적용
+            - :focus : 요소가 포커스를 받고 있을 때 적용
+            - :nth-child(a) / :nth:of-type(a) : a번째에 해당하는 요소
+              - 1 : 첫번째 요소
+              - even : 짝수번째 요소
+              - odd : 홀수번째 요소
+              - 2n : 2의 배수 => 3n / 5n ...
+              - 3n - 1 : 3의 배수에서 1개 빼기
+    -->
+    <!-- 
+        선택자 조합
+        - 여러 선택자를 이용하여 요소를 선택
+        - 자식 관계 : >
+          - 부모선택자 > 자식선택 (table > tbody > tr > td)
+          - 부모선택자 : 바로 위에 있는 부모
+        - 자손 관계 : 공백
+          - 조상선택자 자손선택자 (table td)
+          - 조상선택자는 부모포함
+        - 형제 : 선택자를 붙여서 나열
+          - 선택자1선택자2
+          - 선택자1과 선택자2를 모두 만족하는 요소
+          - #ptag.hong(O)  p.hong(O)  divp(x)  .hongp(x)
+          - 안되는 조합
+           1. 붙여써서 발생되는 상황(띄어쓰기 없이는 구분이 안되는 경우) .hongp(x)
+           2. 태그 선택자들로만 구성되어 있는 경우 divp(x)
+           3. 아이디 선택자가 같은경우 #p#p (x)
+        
+        선택자 우선순위
+        - 여러 선택자가 겹쳐져 있는 상황일 경우
+        - 아이디 선택자(1000) > 클래스선택자(100) > 태그(10)
+        - 우선순위가 같은 경우 (클래스 선택자가 여러개인 경우) 아래에 있는 것이 적용
+    -->
+</body>
+</html>

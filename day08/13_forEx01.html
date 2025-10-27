@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    구구단 : <input type="text" id="dan"> <br>
+    <button id="btn">구구단</button>
+    <ul id="ul"></ul>
+
+    <script>
+        document.getElementById('btn').addEventListener('click',()=>{
+            
+            if(document.getElementById('dan').value ==''){
+                alert('조회 단수를 입력 해 주세요');
+                document.getElementById('dan').value='';
+                document.getElementById('dan').focus;
+                return;
+            }
+            let dan = Number( document.getElementById('dan').value);
+            let str ='';
+            document.getElementById('ul').innerHTML = '';
+            for(let i=1;i<10;i++){
+                str += `<li>${dan} * ${i} = ${i*dan}</li>`;
+            }
+            document.getElementById('ul').innerHTML = str;
+
+        })
+    </script>
+</body>
+</html>

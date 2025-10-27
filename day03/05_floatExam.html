@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        p-box : 500*500
+        box : 부모안에 3등분으로 채우기
+    -->
+    <style>
+        .p-box{
+            width: 500px;
+            height: 500px;
+            border: 1px solid black;
+        }
+        .box{
+            height: 100%;
+            /* 
+                calc(식) : 연산자 앞뒤로 띄어쓰기를 해야 정확함.
+            */
+            width: calc(100% / 3);
+            float: left;
+        }
+        .box1{
+            background-color: antiquewhite;
+        }
+        .box2{
+            background-color: aquamarine;
+        }
+        .box3{
+            background-color: blueviolet;
+        }
+    </style>
+</head>
+<body>
+    <div class="p-box">
+        <div class="box box1"></div>
+        <div class="box box2"></div>
+        <div class="box box3"></div>
+    </div>
+</body>
+</html>

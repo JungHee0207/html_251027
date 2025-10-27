@@ -1,0 +1,629 @@
+@import url(../day05/reset.css);
+@font-face {
+    font-family: NotoSansKR-VariableFont_wght;
+    src: url(../font/Noto_Sans_KR/NotoSansKR-VariableFont_wght.ttf);
+}
+body{
+    font-family: NotoSansKR-VariableFont_wght;
+    color: black;
+}
+/* inner : 1360px */
+.wrap{
+    min-width: 1400px;
+}
+.inner{
+    width: 1360px;
+    margin: auto;
+    box-sizing: border-box;
+}
+/* 전체 content-box 패딩 120px */
+.con-box{
+    padding: 120px 0;
+}
+/* heaer */
+header{
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 100;
+}
+header .top{
+    margin-bottom: 10px;
+} 
+header .top, .menu{
+    border-bottom: 1px solid gray;
+    padding-bottom: 10px;
+}
+header .top a, .menu a{
+    color: gray;
+    font-weight: 600;
+}
+header .top a{
+    font-size: 13px;
+}
+header .inner{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+header .inner>.top-left>ul{
+    display: flex;
+}
+header .inner>.top-right>ul{
+    display: flex;
+}
+#g{
+    color: rgb(0, 66, 0);
+}
+header .inner>.top-right>ul>li:last-child{
+    position: relative;
+}
+header .inner ul>li{
+    margin: 15px 0;
+}
+header .inner ul>li:not(.after){
+    margin: 15px 10px;
+}
+header .inner>.top-right img{
+    width: 12px;
+    position: absolute;
+    top: 5px;
+    left: 30px;
+}
+.after::after{
+    content: "";
+    display: inline-block;
+    position: relative;
+    top: 2px;
+    left: 1px;
+    width: 1px;
+    height: 13px;
+    background-color: rgb(175, 175, 175);
+    margin: 0 10px;
+}
+header .menu .menu-left{
+    display: flex;
+    align-items: center;
+}
+header .menu .menu-left img{
+    margin-right: 50px;
+}
+header .menu ul{
+    display: flex;
+}
+header .menu>.inner>.menu-left>ul>li{
+    margin: 0 30px;
+}
+header .menu>.inner>.menu-left>ul>li>a{
+    font-size: 17px;
+    color: black;
+}
+header .menu>.inner>.menu-right{
+    width: 100px;
+    height: 35px;
+    border: 1px solid rgb(0, 59, 0);
+    line-height: 35px;
+    border-radius: 50px;
+}
+
+/* main height : 532px */
+/* slide */
+main>.slide{
+    width: 100%;
+    height: 532px;
+    background-image: url(../image/민속박물관/imgi_2_202509161994fd0d1ca60.jpeg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+main>.slide .slide-main{
+    color: white;
+    padding-top: 50px;
+}
+main>.slide .slide-main1{
+    font-size: 60px;
+    font-weight: 700;
+    padding-bottom: 15px;
+}
+main>.slide .slide-sub{
+    font-size: 28px;
+    font-weight: 700;
+    padding-bottom: 10px;
+}
+main>.slide .sub1{
+    margin-top: 30px;
+}
+main>.slide .slide-time{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+}
+/* slide-time-right => width 270px*80px */
+main>.slide .slide-time>.slide-time-left{
+    width: calc(100% - 270px);
+    background-color: white;
+    height: 80px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+main>.slide .slide-time>.slide-time-left>svg{
+    width: 30px;
+    height: 30px;
+}
+main>.slide .slide-time>.slide-time-left>span{
+    font-size: 20px;
+    font-weight: 700;
+    padding: 0 50px 0 10px;
+}
+main>.slide .slide-time>.slide-time-left>ul{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+main>.slide .slide-time>.slide-time-left>ul>li{
+    margin: 0 30px;
+}
+main>.slide .slide-time>.slide-time-left>ul>li>strong{
+    font-size: 18px;
+    font-weight: 700;
+    padding-left: 20px;
+}
+main>.slide .slide-time>.slide-time-right{
+    width: 270px;
+    height: 80px;
+    box-sizing: border-box;
+    background-color: rgb(0, 96, 0);
+    color: white;
+    line-height: 80px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+    position: relative;
+}
+main>.slide .slide-time>.slide-time-right>svg{
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 25px;
+}
+main>.slide .slide-time>.slide-time-right>svg path{
+    stroke: white;
+}
+main>.slide .slide-time>.slide-time-right>span{
+    padding-left: 40px;
+}
+
+/* con1 */
+main>.con1 .title{
+    display: flex;
+    justify-content: space-between;
+    font-size: 35px;
+    font-weight: 700;
+    padding-bottom: 20px;
+    border-bottom: 2px solid black;
+    margin-bottom: 30px;
+}
+main>.con1 .title a{
+    color: black;
+}
+main>.con1 ul>.list{
+    display: flex;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    border-bottom: 2px solid gray;
+}
+/* img 320*200 */
+main>.con1 ul>.list>img{
+    width: 320px;
+    height: 200px;
+    margin-right: 30px;
+}
+main>.con1 ul>.list>ul>li:nth-of-type(1){
+    font-size: 25px;
+    font-weight: 700;
+    padding: 20px 0;
+}
+main>.con1 ul>.list>ul>li:nth-of-type(2){
+    font-size: 18px;
+    padding-bottom: 20px;
+}
+main>.con1 ul>.list>ul>li:nth-of-type(3){
+    font-size: 15px;
+    color: gray;
+    padding-bottom: 30px;
+}
+main>.con1 ul>.list>ul>li:nth-of-type(4)>a{
+    color: gray;
+}
+main>.con1 ul>.list>ul>li:nth-of-type(4)>a>svg{
+    display: inline-block;
+    vertical-align: top;
+}
+main>.con1 ul>.list-icon{
+    display: flex;
+    justify-content: center;
+}
+main>.con1 ul>.list-icon>svg{
+    margin: 0 20px;
+}
+main>.con1 ul>.list-icon span{
+    font-weight: 700;
+}
+/* con2 */
+.con2{
+    background-image: url(../image/민속박물관/main_deco_bg_01-D3jcpFS4.jpg);
+    text-align: center;
+}
+.con2>.inner>.title>div{
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+.con2>.inner>.title>span{
+    font-size: 20px;
+    font-weight: 600;
+    color: gray;
+}
+.after-dot::after{
+    content: "";
+    display: inline-block;
+    position: relative;
+    width: 4px;
+    height: 4px;
+    background-color: rgb(0, 69, 0);
+    top: -5px;
+    border-radius: 50%;
+    margin: 0 10px;
+}
+.con2>.inner>ul{
+    display: flex;
+    justify-content: space-between;
+    margin: 80px 0;
+}
+/* img 318*400 */
+.con2>.inner>ul img{
+    width: 318px;
+    height: 400px;
+}
+.con2>.inner>ul a{
+    text-align: left;
+}
+.con2>.inner>ul a>.part{
+    width: 50px;
+    height: 30px;
+    font-size: 13px;
+    font-weight: 700;
+    text-align: center;
+    line-height: 30px;
+    margin: 15px 0;
+    color: white;
+}
+.con2>.inner>ul a>.child{
+    background-color: rgb(27, 176, 156);
+}
+.con2>.inner>ul a>.school{
+    background-color: rgb(88, 108, 210);
+}
+.con2>.inner>ul a>.title{
+    font-size: 18px;
+    font-weight: 700;
+    color: black;
+    margin: 10px 0;
+}
+.con2>.inner>ul a>.day{
+    color: gray;
+    letter-spacing: -1px;
+}
+.con2>.inner>a{
+    color: black;
+    font-weight: 700;
+    border: 1px solid rgb(118, 118, 118);
+    padding: 10px 50px;
+}
+
+/* con3 */
+.con3{
+    background-image: url(../image/민속박물관/main_escape_bg_pc-D0RSiOJB.jpg);
+    text-align: center;
+}
+.con3>.inner>.title>div{
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+.con3>.inner>.title>span{
+    font-size: 20px;
+    font-weight: 600;
+    color: gray;
+}
+.con3>.inner>.con3-main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 50px 0 80px 0;
+}
+.con3>.inner>.con3-main button{
+    width: 68px;
+    height: 68px;
+    border: none;
+    background-color: rgb(156, 156, 156);
+}
+.con3>.inner>.con3-main svg path{
+    stroke: white;
+}
+.con3>.inner>.con3-main>.arrow-left{
+    margin-right: 80px;
+}
+.con3>.inner>.con3-main>.arrow-right{
+    margin-left: 80px;
+}
+.con3>.inner>.con3-main>.image{
+    background-image: url(../image/민속박물관/imgi_48_main_deco_bg_02-BHVkLLTU.jpg);
+    padding: 60px 95px;
+}
+.con3>.inner>.con3-main>.image>img{
+    width: 240px;
+    height: 336px;
+}
+.con3>.inner>.con3-main>.text{
+    background-color: white;
+    width: 536px;
+    height: 456px;
+    padding-left: 80px;
+    box-sizing: border-box;
+    box-shadow: 3px 3px 10px rgb(230, 230, 230);
+}
+.con3>.inner>.con3-main>.text>p:nth-of-type(1){
+    font-size: 35px;
+    font-weight: 700;
+    text-align: left;
+    padding: 70px 120px 0 0;
+}
+.con3>.inner>.con3-main>.text>p:nth-of-type(2){
+    font-size: 15px;
+    color: gray;
+    padding: 20px 60px 0 0;
+    text-align: left;
+    letter-spacing: -0.8px;
+    margin-bottom: 50px;
+}
+.con3>.inner>.con3-main>.text>.diff{
+    display: flex;
+    align-items: center;
+    margin-bottom: 50px;
+}
+.con3>.inner>.con3-main>.text>.diff>div{
+    display: flex;
+    align-items: center;
+}
+.con3>.inner>.con3-main>.text>.diff>div>.svg-img{
+    width: 30px;
+    height: 30px;
+    background-color: rgb(216, 216, 216);
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.con3>.inner>.con3-main>.text>.diff>div>.svg-img>svg{
+    width: 18px;
+    height: 18px;
+    padding-top: 5px;
+}
+.con3>.inner>.con3-main>.text>.diff>div>.svg-img>svg path{
+    stroke: black;
+}
+.con3>.inner>.con3-main>.text>.diff>div>span:nth-of-type(2){
+    margin-right: 15px;
+    font-weight: 700;
+    font-size: 17px;
+}
+.con3>.inner>.con3-main>.text>.diff>div>span:nth-of-type(3){
+    color: gray;
+}
+.con3>.inner>.con3-main>.text>.diff>div>ul{
+    display: flex;
+    align-items: center;
+    margin-right: 50px;
+}
+.con3>.inner .text>.detail{
+    width: 180px;
+    height: 50px;
+    color: white;
+    font-weight: 700;
+    background-color: rgb(0, 68, 0);
+    line-height: 50px;
+}
+.con3>.inner>a{
+    color: black;
+    font-weight: 700;
+    border: 1px solid rgb(118, 118, 118);
+    padding: 10px 50px;
+}
+
+/* con4 656*280 */
+.con4>.inner{
+    display: flex;
+    justify-content: space-between;
+}
+.con4>.inner>a>div{
+    width: 656px;
+    height: 280px;
+    box-sizing: border-box;
+}
+.con4>.inner>a:first-child>div{
+    background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.8)), url(../image/민속박물관/imgi_20_202509251997cfd11bb40.jpeg);
+    background-size: cover;
+    background-position: center;
+}
+.con4>.inner>a:last-child>div{
+    background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.8)), url(../image/민속박물관/imgi_21_202509251997cfece7480.jpeg);
+    background-size: cover;
+    background-position: center;
+}
+.con4>.inner>a>div>p:first-child{
+    color: white;
+    font-size: 30px;
+    font-weight: 700;
+    padding: 150px 0 20px 20px;
+}
+.con4>.inner>a>div>p:last-child{
+    color: white;
+    font-size: 18px;
+    margin-left: 20px;
+    letter-spacing: -1px;
+}
+/* con5 */
+.con5{
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
+.con5>a{
+    display: flex;
+    height: 100px;
+    padding: 20px 0;
+    width: calc(100% / 2);
+    align-items: center;
+    color: white;
+    box-sizing: border-box;
+}
+.con5>a:first-child{
+    background-color: rgb(0, 141, 0);
+    padding-left: 150px;
+}
+.con5>a:last-child{
+    background-color: rgb(0, 105, 0);
+    padding-left: 50px;
+}
+.con5>a>.icon{
+    width: 50px;
+    height: 50px;
+    background-color: rgb(0, 46, 0);
+    border-radius: 50%;
+}
+.con5>a svg{
+    width: 30px;
+    height: 30px;
+    padding: 10px;
+}
+.con5>a svg path, circle, rect{
+    stroke: white;
+}
+.con5>a svg rect{
+    fill: white;
+}
+.con5>a>.text{
+    font-size: 20px;
+    font-weight: 700;
+    margin-left: 30px;
+    margin-right: 430px;
+}
+/* footer */
+footer{
+    padding: 50px 0;
+}
+footer .footer-menu{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+footer .footer-menu>ul{
+    display: flex;
+    align-items: center;
+}
+footer .footer-menu>ul>li{
+    margin: 0 10px;
+}
+footer .footer-menu>ul>li>a{
+    color: black;
+}
+#b{
+    color: rgb(57, 57, 173);
+    font-weight: 700;
+}
+footer .family-site{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    margin-bottom: 30px;
+}
+footer .family-site>div:first-child{
+    width: 150px;
+    height: 40px;
+    background-color: rgb(218, 218, 218);
+    color: gray;
+    font-size: 13px;
+    border-radius: 50px;
+    padding-left: 20px;
+    line-height: 40px;
+    margin-right: 30px;
+}
+footer .family-site>div:first-child>img{
+    width: 15px;
+    padding-left: 45px;
+}
+footer .family-site>div:last-child svg{
+    margin: 0 8px;
+}
+footer .footer-bt{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: gray;
+}
+footer .footer-bt>.bt-left p{
+    color: black;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+footer .footer-bt>.bt-left p>img{
+    width: 15px;
+}
+footer .footer-bt>.bt-left div{
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+footer .footer-bt>.bt-left div:last-child{
+    margin-top: 30px;
+    letter-spacing: -1px;
+}
+footer .footer-bt>.bt-right>ul{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    letter-spacing: -1px;
+}
+footer .footer-bt>.bt-right>ul>li{
+    display: flex;
+    align-items: center;
+}
+footer .footer-bt>.bt-right>ul>li>.first{
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+footer .footer-bt>.bt-right>ul>li>.second{
+    width: 44px;
+    height: 32px;
+    margin-right: 10px;
+    margin-left: 50px;
+}
+footer .fixed-top{
+    position: fixed;
+    bottom: 15px;
+    right: 50px;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    box-shadow: 1px 1px 3px 3px rgb(221, 221, 221);
+    border-radius: 50%;
+}
+footer .fixed-top>svg{
+    padding: 13px;
+}

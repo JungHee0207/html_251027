@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>
+        input 객체 가져오기
+    </h1>
+    <!-- 
+        - input tab는 속성에 값이 맵핑 되어 있어서 value 
+          속성으로 값을 가져올 수 있음.
+        <h1> innerText / innerHTML </h1>
+        input => value
+        - checkbox, radio, select>option 태그 내에서 value 속성을 부여해 주어야 선택값을 가져올 수 있음.
+        
+        - value, innerText 가져오는 값은 모두 string 처리됨.
+        - string 처리된 값을 숫자로 사용하기 위해서는 변환이 필요함.
+
+    -->
+    
+    <fieldset>
+        <legend>input tab element </legend>
+        name : <input type="text" id="name" placeholder="이름 입력..."> <br>
+        age: <input type="text" id="age" placeholder="나이 입력 ..."> <br>
+        addr: <input type="text" id="addr" placeholder="주소 입력 ..."> <br>
+        <button onclick="clickEvent()">가져오기</button>
+    </fieldset>
+
+    <h1 id="printResult"></h1>
+    <ul id="ul">
+    </ul>
+
+    <script>
+        const name=document.getElementById('name');
+        const age = document.getElementById('age');
+        const addr = document.getElementById('addr');
+
+        console.log(name);
+
+        function clickEvent(){
+            // Number
+            console.log(name.value);
+
+            console.log(Number(age.value)+1 , typeof(Number(age.value)));
+            console.log(addr.value);
+            document.getElementById('printResult').innerHTML = `
+            <span>${name.value}</span>, 
+            <span>${age.value}</span>, 
+            <span>${addr.value}</span>`;
+
+            document.getElementById('ul').innerHTML =`
+            <li>이름 : ${name.value}</li> 
+            <li>나이 : ${age.value}</li>
+            <li>주소 : ${addr.value}</li>
+            `;
+
+            // input 입력된 value 값을 없애기
+            name.value='';
+            age.value='';
+            addr.value='';
+
+            document.getElementById('name').value='';
+            document.getElementById('age').value='';
+            document.getElementById('addr').value='';
+
+        }
+
+    </script>
+</body>
+</html>

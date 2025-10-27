@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>
+        object(객체) : 식별할 수 있는 것을 상세 특징으로 표현하려한 형식
+
+    </h1>
+    <!-- 
+        - const 상수로 선언하는 것이 일반적 : 객체의 지속성을 확보하기 위함.
+        {} 안에 key : value
+         {
+            key : value, 
+            key : value,
+            key : value ...
+         }
+        - key 값은 같은 객체 내에서는 중복 안됨.(고유 키)
+        - value 는 중복 가능.
+        - 객체 내부의 속성(value)의 값으로 사용 할 수 있는 데이터 타입은
+          제한이 없음.
+        - key 는 string
+        - value의 값으로 익명함수를 정의 하면 그 함수를 메서드라고 부른다.
+        - key 값이 그 함수의 이름이 됨.
+
+    -->
+    
+    <script>
+        const car = {name:'myCar', year:2025};
+        // car = 100; // 불가능
+        // 선언한 객체를 지킬 수 있음 - 지속성 확보
+
+        let myCar = {name:'myCar2', year:2025};
+        // myCar의 객체는 사라짐. - 객체를 선언하고 활용하려는 목적을 잃어버림.
+        myCar = 100;    
+
+
+    </script>
+
+    <script>
+        const me ={
+            firstName:'홍',
+            lastName:'길동',
+            age:20,
+            addr:'seoul',
+            "hobby":"독서",
+            avail:{
+                year:2025,
+                title : 'javascript',
+                ver :'ES6',
+                project:'javaScaript project',
+                intro:function(){
+                    console.log(me.firstName);
+                    console.log('객체 내부에 선언된 함수');
+                    return `${this.title} : ${this.ver}`;
+                }
+            },
+            year:2022
+        }
+        console.log(me);
+        // 주소만 출력
+        console.log(me.addr);
+        console.log(me.avail.title);
+        console.log(me.avail.intro) ;   //  실행이 아니라 지목
+        console.log(me.avail.intro()) ; // 실행 () invoke 호출이 된다.
+
+        console.log("------------------------");
+        // 객체명.key => value 값을 리턴
+        let keyName = "age";
+        console.log(me[keyName]);
+        console.log(me['firstName']);    // me[keyString]
+        console.log(me.avail["title"]);
+        console.log(me["avail"]["title"]);
+        console.log(me["avail"].ver);
+        console.log(me["avail"]["intro"]());
+
+        console.log("---------------------------------");
+
+    </script>
+
+    <script>
+        // 좋아하는 가수의 정보를 담은 객체 생성 => 출력
+        // name, age ... playlist:{ , , }, jukebox( playlist 콘솔 출력 함수)
+
+        const singer ={
+            name :'김광석',
+            age : 60,
+            playlist:{
+                song1:'서른즈음에',
+                song2:'못다 한 이야기',
+                song3:'먼지가되어',
+                jukebox:function(){
+                    console.log(`${this.song1}`);
+                    console.log(`${this.song2}`);
+                    console.log(`${this.song3}`);
+                }
+            }
+        } 
+
+        console.log(singer.name);
+        console.log(singer.playlist.song1);
+        console.log(singer.playlist.jukebox());
+
+        const musician = {
+            name : 'TU',
+            age:20,
+            addr:'seoul',
+            playlist:{
+                first:'너랑나',
+                second:'좋은날',
+                third:'밤편지'
+            },
+            jukebox:function(p1,p2,p3){
+                console.log(p1,p2,p3);
+                console.log(this.playlist.first, this.playlist.second, this.playlist.third);
+            }
+        }
+
+        // '[{},{},{},{}]'
+        let p1='어푸';
+        let p2='라일락';
+        let p3='후라이의꿈';
+
+        console.log(musician.name+"("+ musician.age +")");
+        musician.jukebox(p1,p2,p3);
+        
+    </script>
+</body>
+</html>

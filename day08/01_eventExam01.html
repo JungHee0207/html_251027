@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <fieldset>
+        <legend>할인율 구하기</legend>
+        가격 : <input type="text" id="price">원<br>
+        할인율 : <input type="text" id="rate">% <br>
+        <button onclick="showPrice()"> 할인가격 계산</button>
+        <!-- 가격과 할인율에 따른 지불금액 구해주세요 -->
+        <!-- 가격 : / 할인율 : / 할인금액 : / 지불 금액: -->
+        <h3 id="result"></h3>
+    </fieldset>
+
+    <script>
+        function showPrice(){
+            let price = Number( document.getElementById('price').value);
+            let rate = Number( document.getElementById('rate').value);
+            let rateAmt = parseFloat(price * (rate/100)).toFixed(2);
+            let amt = price - rateAmt;
+
+            let str = `가격 : ${price}원 / 할인율 : ${rate}% / 할인금액 : ${rateAmt}원 / 지불 금액: ${amt}원`;
+            // innerHTML 함수처럼 호출하면 안되고 값 할당해야 함
+            // document.getElementById('result').textContent = str;
+
+            document.getElementById('result').innerText = str;
+        }
+    </script>
+</body>
+</html>

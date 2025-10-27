@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        이름, 국어, 영어, 수학 점수를 입력 받아 계산 버튼을 누르면
+        합계, 평균, 80점 이상이면 합격
+        국어, 영어, 수학의 값이 0~100 사이의 값이 아니라면 alert 창을 띄워 안내
+        입력 값 삭제 후 다시 입력
+    -->
+    <!-- 
+        Number(): String을 숫자로 변경될수 있는 값 / 정수 + 실수 
+        parseInt() : 정수만 변경가능.
+    -->
+    <fieldset>
+        <legend> 성적표 </legend>
+        이름 : <input type="text" id="name" placeholder="이름 입력..."> <br>
+        국어 : <input type="text" id="kor" class="num" placeholder="0"> <br>
+        영어 : <input type="text" id="eng" class="num" placeholder="0"> <br>
+        수학 : <input type="text" id="math" class="num" placeholder="0"> <br>
+        <button id="btn">성적계산</button>
+        <ul id="ul">
+
+        </ul>
+    </fieldset>
+
+    <script>
+
+
+        document.getElementById('btn').addEventListener('click', ()=>{
+
+            let name = document.getElementById('name').value;
+            let kor = Number(document.getElementById('kor').value);
+            let eng = Number(document.getElementById('eng').value);
+            let math = Number(document.getElementById('math').value);
+
+            if(!(check(kor, 'kor') && check(eng,'eng') && check(math, 'math'))){
+                return;
+            }
+            /*
+            if(document.getElementById('kor').value==''){
+                alert('국어 점수는 0에서 100 사이의 숫자로 입력하세요.');
+                document.getElementById('kor').focus;
+                return;
+            }
+            if(document.getElementById('eng').value==''){
+                alert('영어 점수는 0에서 100 사이의 숫자로 입력하세요.');
+                document.getElementById('enf').focus;
+                return;
+            }
+            if(document.getElementById('math').value==''){
+                alert('수학 점수는 0에서 100 사이의 숫자로 입력하세요.');
+                document.getElementById('math').focus;
+                return;
+            }
+
+            if (kor === '' || Number.isNaN(kor) || kor < 0 || kor > 100){
+                alert('국어 점수는 0에서 100 사이의 숫자로 입력하세요.');
+                document.getElementById('kor').value = '';
+                document.getElementById('kor').focus();
+                return;
+            }
+
+            if (eng === '' || Number.isNaN(eng) || eng < 0 || eng > 100){
+                alert('영어 점수는 0에서 100 사이의 숫자로 입력하세요.');
+                document.getElementById('eng').value = '';
+                document.getElementById('eng').focus();
+                return;
+            }
+
+            if (math === '' || Number.isNaN(math) || math < 0 || math > 100){
+                alert('수학 점수는 0에서 100 사이의 숫자로 입력하세요.');
+                document.getElementById('math').value = '';
+                document.getElementById('math').focus();
+                return;
+            }
+            */
+            let sum = kor+eng+math;
+            let avg = (sum/3).toFixed(2);
+            const pass = avg >= 80 ? '합격' : '불합격';
+            
+            let str ='';
+            str =  `<li> 이름: ${name} </li>`;
+            str += `<li> 국어: ${kor} </li>`;
+            str += `<li> 영어: ${eng} </li>`;
+            str += `<li> 수학: ${math} </li>`;
+            str += `<li> 합계: ${sum} </li>`;
+            str += `<li> 평균: ${avg} </li>`;
+            str += `<li> 결과: ${pass} </li>`;
+            document.getElementById('ul').innerHTML = '';
+            document.getElementById('ul').innerHTML = str;
+             // 결과 출력 (ul 비우고 새로 추가)
+/*            document.getElementById('ul').innerHTML = '';
+            const items = [
+                `이름: ${name}`,
+                `국어: ${kor}`,
+                `영어: ${eng}`,
+                `수학: ${math}`,
+                `합계: ${sum}`,
+                `평균: ${avg}`,
+                `결과: ${pass}`
+            ];
+            items.forEach(text => {
+                const li = document.createElement('li');
+                li.textContent = text;
+                ul.appendChild(li);
+            });
+*/
+
+        });
+
+        function check(num, id){
+            if(num<0 || num>100){
+                alert('0~100사이의 값을 입력 해주세요.');
+                document.getElementById(id).value = '';
+                document.getElementById(id).focus;
+                ocument.getElementById('ul').innerHTML = '';
+                return false;
+
+            }else{
+                return true;
+            }
+        }
+    </script>
+</body>
+</html>

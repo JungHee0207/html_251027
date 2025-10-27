@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>exam1</title>
+    <style>
+        .p-box{
+           background-color: bisque;
+        }
+        .box{
+            width: calc(100/4);
+            height: 50px;
+            border: 1px solid black;
+            float: left;
+            box-sizing: border-box;
+            text-align: center;
+            line-height: 50px;
+            border-right: none;
+            color: black;
+        }
+        .p-box:hover{
+            content: "";
+            display: block;
+            clear: both;
+            
+        }
+        .p-box::after{
+            content: "";
+        }
+        .end{
+            border-right: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div class="p-box">
+        <a href=""><div class="box">menu1</div></a>
+        <a href=""><div class="box">menu2</div></a>
+        <a href=""><div class="box">menu3</div></a>
+        <a href=""><div class="box end">menu4</div></a>
+    </div>
+
+    
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: calc(100% / 4);
+            height: 50px;
+            border: 1px solid black;
+            float: left;
+            box-sizing: border-box;
+            text-align: center;
+            line-height: 50px;
+            border-right: none;
+            color: black;
+
+        }
+        .box:hover{
+            cursor: pointer;
+            background-color: yellow;
+        }
+        .p-box::after{
+            content: "";
+            display: block;
+            clear: both;
+        }
+        .end{
+            border-right: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div class="p-box">
+        <a href=""><div class="box">menu1</div></a>
+        <a href=""><div class="box">menu2</div></a>
+        <a href=""><div class="box">menu3</div></a>
+        <a href=""><div class="box end">menu4</div></a>
+    </div>
+</body>
+</html>

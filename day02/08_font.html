@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Sunflower:wght@300&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>font</title>
+    <!-- 
+        font 지정
+        - 글꼴 / 크기 / 스타일 / 굵기
+        - font-family : 브라우저마다 지원하는 폰트가 다르고, 언어마다 달라 폰트의 묶음으로 지정
+            - 지어하려는 폰트를 , 로 나열
+            - 한글 폰트의 경우 한글이름과, 영문이름 같이 사용
+            - 마지막 폰트는 기본형으로 지정(serif)
+            - 폰트명에 띄어쓰기가 있으면 "나눔 고딕", 굴림
+        - font-size : 글자 크기
+        - font-style : 기울림꼴 
+        - font-weigth : 굵기 100~900 100 단위 지정 (700 보통)
+        - font : 속성을 한번에 지정하는 경우
+        - font [style | weight] size family
+
+    -->
+    <style>
+        /*
+        @font-face{
+            font-family: Nanum_Gothic;
+            src url(../font/Nanum_Gothic/NanumGothic-Regular.ttf);
+        }
+            */
+        .font{
+            font-family: "Nanum Gothic", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 50px;
+            
+        }
+    </style>
+</head>
+<body>
+    <!--  -->
+    <div class="font">안녕하세요</div>
+</body>
+</html>

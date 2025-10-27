@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        .header{
+            height: 60px;
+            background-color: gray;
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 60px;
+            padding-left: 40px;
+            box-sizing: border-box;
+        }
+        /* media query 변경 내용 */
+        .main-img{
+            background-image: url(../image/풍경1.jpg);
+            height: 300px;
+            background-position: center;
+            background-size: cover;
+
+        }
+        .description{
+            height: 300px;
+            background-color: white;
+            padding-left: 40px;
+            box-sizing: border-box;
+        }
+        .description>p:first-child{
+            font-weight: 700;
+            color: gray;
+            font-size: 20px;
+            margin: 30px 0 ;
+
+        }
+        .description>p:rtn-child(2){
+            font-size: 20px;
+            font-weight: 700;            
+        }
+        .description>p:last-child{
+            font-size: 16px;            
+        }
+        .sub-img{
+            height: 350px;
+            background-image: url(../image/풍경2.jpg);
+           
+            background-position: center;
+            background-size: cover;
+        }
+        .sub-img2{
+            height: 300px;
+            background-image: url(../image/풍경3.jpg);
+            background-position: center;
+            background-size: cover;
+            text-align: center;
+            line-height: 300px;
+        }
+        .sub-img2>a{
+            border: 4px solid white;
+            text-decoration: none;
+            color: white;
+            padding: 10px 40px;
+        }
+        .sub-img3{
+            height: 250px;
+            background-image: url(../image/풍경4.jpg);
+            background-position: center;
+            background-size: cover;
+
+        }
+
+        @media screen and (min-width : 800px) {
+            .main-img{
+                height: 400px;
+            }
+            .description{
+                height: 400px;
+            }
+            .sub-img{
+                height: 500px;
+                width: 50%;
+                float: left;
+            }
+            .sub-img2{
+                height: 250px;
+                width: 50%;
+                float: right;
+                line-height: 250px;
+            }
+            .sub-img3{
+                height: 250px;
+                width: 50%;
+                float: right;
+            }
+        }
+
+        @media screen and (min-width : 1200px) {
+            .main-img{
+                height: 800px;
+                width: 50%;
+                float: left;
+            }
+            .description{
+                height: 400px;
+                width: 50%;
+                float: right;
+            }
+            .sub-img{
+                height: 400px;
+                width: 25%;
+                float: left;
+            }
+            .sub-img2{
+                height: 200px;
+                width: 25%;
+                float: right;
+                line-height: 200px;
+            }
+            .sub-img3{
+                height: 200px;
+                width: 25%;
+                float: right;
+            }
+        }
+
+        /*
+        .heder{
+            width: 100%;
+            height: 300px;
+            background-color: gray;
+        }
+        .main-img{
+            background-image: url("../image/풍경3.jpg");
+            width: 100%;
+            height: 500px;
+            
+        }
+        .discription{
+            width: 100%;
+            font-size: 15px;
+            font-weight: 700 ;
+            position: relative;
+            top: 10px;
+            left: 20px; 
+
+        }
+        .discription:first-child{
+            color: gray;
+
+        }
+        .discription:last-child{
+            font-weight: 300;
+        }
+        .sub-img{
+            width: 100%;
+            height: 300px;
+            background-image: url("../image/풍경1.jpg");
+        }
+        .sub-img2{
+            width: 100%;
+            height: 300px;
+            background-image: url("../image/풍경2.jpg");
+            position: relative;
+        }
+        .sub-img2>a{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform:translate(-50%,-50%);
+            text-align: center;
+            border: 3px solid white;
+            text-decoration: none;
+        }
+        .sub-img-3{
+            width: 100%;
+            height: 300px;
+            background-image: url("../image/풍경4.jpg") ;
+        }
+
+         @media screen and (min-width : 800px) {
+            .sub-img{
+                width: 50%;
+                height: 500px;
+                float: left;
+            }
+            .sub-img2{
+                width: 50%;
+                height: 250px;
+                float: right;
+            }
+            .sub-img-3{
+                width: 50%;
+                height: 250px;
+                float: right;
+            }
+         }
+         @media screen and (min-width : 1200px) {
+            .main-img{
+                width: 50%;
+                height: 800px;
+                float: left;
+            }
+            .discription{
+                width: 50%;
+                float: right;
+                height: 400px;
+            }
+            .sub-img{
+                float: left;
+                width: 25%;
+                height: 400px;
+            }
+            .sub-img2{
+                width: 25%;
+                height: 200px;
+                float: right;
+            }
+            .sub-img-3{
+                width: 25%;
+                height: 200px;
+                float: right;
+            }
+
+         }
+            */
+    </style>
+</head>
+<body>
+    <div class="header">IN'O</div>
+    <div class="main-img" ></div>
+    <div class="discription">
+        <p>Portfolio</p>
+        <p>Make Hardware Soft</p>
+        <p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also</p>
+    </div>
+    <div class="sub-img"></div>
+    <div class="sub-img2">
+        <a href="">VIEW MORE</a>
+    </div>
+    <div class="sub-img3"></div>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #table{
+            border-collapse: collapse; /* 겹치는 테두리를 하나로 합침 */
+            border: 1px solid #333;
+            width: 100%;
+            max-width: 600px;
+            margin-top: 10px;
+        }
+        #table td, #table td{
+            border: 1px solid #333;
+            padding: 8px 10px;
+            vertical-align: middle;
+        
+        }
+        /* 왼쪽(첫 번째) 열은 가운데 정렬, 오른쪽(두 번째) 열은 좌측 정렬 */
+        #table td:first-child{
+            text-align: center;
+            font-weight: 700;
+            width: 30%;
+            background: #f5f5f5;
+        }
+         #table td:last-child{
+            text-align: left;
+            font-weight: 400;
+        }
+         /* 좋아하는 리스트 안의 ul 스타일 조정 */
+        #table td ul{ margin:0; padding-left:20px }
+
+
+    </style>
+</head>
+<body>
+    <h1>구조에 따른 자바스크립트 객체 생성</h1>
+    <form action="">
+        이름 : <input type="text" id="name"> <br>
+        주소 : <input type="text" id="addr"> <br>
+        좋아하는 리스트 <br>
+        리스트1 : <input type="text" id="favor1"> <br>
+        리스트2 : <input type="text" id="favor2"> <br>
+        리스트3 : <input type="text" id="favor3"> <br>
+        이메일 : <input type="text" id="email"> <br>
+        내가 좋아하는 것 : <input type="text" id="wanna"> <br>
+        <button type="button" onclick="getDatas()"> 객체로 전송</button>
+
+        <button type="button" onclick="putDatas()">표로 출력</button>
+        <button id="btn" >표로 출력1</button>
+        <table id="table1"></table>
+        <table id="table" >
+            <tr>
+                <td>이름</td>
+                <td id="name_1"></td>
+            </tr>
+            <tr>
+                <td>주소</td>
+                <td id="addr_1"></td>
+            </tr>
+            <tr>
+                <td>좋아하는 리스트</td>
+                <td>
+                    <ul>
+                        <li id="favor1_1"></li>
+                        <li id="favor2_1"></li>
+                        <li id="favor3_1"></li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>email</td>
+                <td id="email_1"></td>
+            </tr>
+            <tr>
+                <td>wanna</td>
+                <td id="wanna_1"></td>
+            </tr>
+        </table>
+
+        
+    </form>
+    <script>
+            const dataObj = {
+                name : '',
+                addr : '',
+                favors:{
+                    favor1 :'',
+                    favor2 :'',
+                    favor3 :'',
+                },
+                email:'',
+                wanna:''
+            };
+            console.log(dataObj);
+
+            document.getElementById('btn').addEventListener('click',()=>{
+                let dataTable = document.getElementById('table1');
+
+                let str = `<tbody>`;
+                str += `<th><th>이름</th><td>${dataObj.name}</td></tr>`;
+                str += `<th><th>주소</th><td>${dataObj.addr}</td></tr>`;
+                str += `<th><th>좋아하는 리스트</th><td>`;
+                    str += `<ul>`;
+                        str+=`<li>${dataObj.favors.favor1}</li>`;
+                        str+=`<li>${dataObj.favors.favor2}</li>`;
+                        str+=`<li>${dataObj.favors.favor3}</li>`;
+                str += `</td></tr>`;
+                str += `<th><th>이메일</th><td>${dataObj.email}</td></tr>`;
+                str += `<th><th>좋아하는 것</th><td>${dataObj.wanna}</td></tr>`;
+                str += `</tbody>`;
+
+                dataTable.innerHTML = str;
+
+            })
+
+            function getDatas(){
+                // 내가 입력한 값으로 dataObj 채우기
+                // 객체명.key = value; 해당 객체 값 채우기
+                dataObj.name = document.getElementById('name').value;
+                dataObj.addr = document.getElementById('addr').value;
+                dataObj.favors.favor1 = document.getElementById('favor1').value;
+                dataObj.favors.favor2 = document.getElementById('favor2').value;
+                dataObj.favors.favor3 = document.getElementById('favor3').value;
+                dataObj.email = document.getElementById('email').value;
+                dataObj.wanna = document.getElementById('wanna').value;
+                console.log(dataObj);
+            }
+
+            function putDatas(){
+                document.getElementById('name_1').innerText=dataObj.name;
+                document.getElementById('addr_1').innerText=dataObj.addr;
+                document.getElementById('favor1_1').innerText=dataObj.favors.favor1;
+                document.getElementById('favor2_1').innerText=dataObj.favors.favor2;
+                document.getElementById('favor3_1').innerText=dataObj.favors.favor3;
+                document.getElementById('email_1').innerText=dataObj.email;
+                document.getElementById('wanna_1').innerText=dataObj.wanna;
+            }
+        </script>
+</body>
+</html>

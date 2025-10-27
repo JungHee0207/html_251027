@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function divFunc(a, b){
+            return a / b;
+        }
+
+        function mulFunc (a, b){
+            return divFunc(a, b);
+        }
+        function subFunc(a, b){
+            return mulFunc(a, b);
+        }
+
+        function sumFunc(p1, p2){
+            return subFunc(p1, p2); // subFunc의 반환값을 다시 반환
+        }
+        
+        const result = sumFunc(10,20);
+        console.log(`최종 결과 : ${result}`);
+
+        function myFuncOld(myFuncParam){
+            console.log('myfuncOld function');
+            return `Hello~!! ${myFuncParam}`;
+        }
+
+        const myFunc = function(myName){
+            console.log('myFuncNew function');
+            return `Hello~!! ${myFunc}`;
+        };
+
+        console.log(myFuncOld('홍길동'));
+        console.log(myFunc('홍길동'));
+
+        console.log(myFuncOld(myFunc('홍길동')));
+
+    </script>
+</body>
+</html>

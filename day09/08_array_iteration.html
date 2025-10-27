@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>
+        Array iteration Method : 순환구조에서 사용하는 메서드
+    </h1>
+    <!-- 
+        - array.reduce(callback function(total, value, index, self), [int value]);
+            : reducer(리듀서) 함수를 실행하고, 하나의 결과값을 반환(누적값 리턴)
+
+        - array.every(callback function(value, index, self))
+            : 콜백함수의 리턴 조건에 모든 배열이 만족하면 true / false 리턴( AND)
+        - array.some(callback function(value, index, self))
+            : 콜백함수의 리턴 조건에 하나의 배열이 만족하면 true / false 리턴( OR )
+
+        - array.indexOf('str',[start index]);
+            : 해당 문자가 존재하는 index를 리턴
+
+        - array.lastIndexOf('str', [start index]) : 뒤에서 부터 검색
+
+        - array.find(callback function(value, index, self))
+            : 검색 조건에 만족하는 첫번째 값을 리턴
+
+        - array.findIdex(callback function(value, index, self))
+            : 검색 조건에 만족하는 첫번째 번지를 리턴
+
+        - array.form('객체') : 순서가 있거나, 순환구조를 갖고 있는 객체를 배열로 변환
+
+        - array.keys() : index를 배열로 리턴
+        
+        - array.entryies() : index : value 구조값을 만들어서 배열에 담아 리턴
+        
+        - array.includes('str') : 배열에 'str' 값이 있으면 true / false
+        
+        
+    -->
+
+    <script>
+        const fruits = ['apple','banana','orange','apple','mango'];
+        let f = fruits.keys();
+        console.log(f);
+        for(let key of f){
+            console.log(key);
+        }
+
+        let en = fruits.entries();
+        console.log(en);
+
+        for(let e of en){
+            console.log(e);
+        }
+
+        let index = fruits.indexOf('apple');
+        console.log(index);
+
+        index = fruits.lastIndexOf('apple');
+        console.log(index);
+
+        console.log('-----------------');
+
+        const arr = [1,3,4,5,3,5,8,0];
+        // reduce() : 누적값 리턴
+        let sum = arr.reduce(function(total, value){
+            return total + value;
+        }, 100)
+        console.log(sum);
+
+        // find() : 조건에 맞는 첫번째 값을 리턴
+        let findArr = arr.find((v) =>{
+            return v > 5;
+        });
+
+        console.log(findArr);   // undefined 조건에 맞는 값이 없을 경우
+
+        // every() : and /  some() : or
+        let even = arr.every((v) => v%2 ==0);
+        console.log(even);  // false 홀수도 있어서
+
+        let even2 = arr.some((v) => v%2 ==0);
+        console.log(even2);
+
+        let i = fruits.includes('apple');
+        console.log(i);
+        
+
+        /*
+        en.forEach((v)) => {         
+        });
+        */
+
+
+    </script>
+
+
+</body>
+</html>

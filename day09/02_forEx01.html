@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>향상된 for</h1>
+    <h3> for in / for of </h3>
+    <!-- 
+        for(변수 : 리스트){     : java
+            코드;
+        }
+
+        - for of : 배열 안의 내용을 탐색 할 때 사용 [] => java 에서의 for 문과 동ㅇ리
+            for(let value of array) {code;}
+
+        - for in : 객체 안의 내용을 탐색 할 때 사용 {}
+            for(let key in object){ code;}
+            object.key = value 가 리턴
+    -->
+
+    <script>
+        const  people = ['kim','hong','park','lee'];
+        console.log(people);
+
+        for(let i = 0;i<people.length;i++){
+            console.log(people[i]);
+        }
+
+
+        console.log('--for of --');
+
+        for(let p of people){
+            console.log(p);
+        }
+
+        console.log('--for in --');
+        const kim = {
+            name:'kim',
+            age:20,
+            email:'123@123.ocm'
+        }
+
+        for(let key in kim){
+            // key / kim[key] = value
+            console.log(key + ":" + kim[key]);
+        }
+
+        const member={
+            name:'park',
+            age:30,
+            favors:['baseball','game', 'movie']
+        }
+
+        console.log('-------------------');
+        for(let key in member){
+            console.log(key);
+            console.log(member[key]);   // value
+            if(key == 'favors'){
+                for(let m of member[key]){
+                    console.log(m);
+                }
+            }
+        }
+        console.log('-------exam--------');
+        const musician = {
+            name : 'TU',
+            age:20,
+            addr:'seoul',
+            playlist:['너랑나','좋은날','밤편지']
+            
+        }
+
+        for(let key in musician){
+            if(key == 'playlist'){
+                console.log(key);
+                for(let m of musician[key]){
+                    console.log(m);
+                }
+            }else{
+                console.log(key+':'+musician[key]);
+
+            }
+        }
+
+    </script>
+</body>
+</html>

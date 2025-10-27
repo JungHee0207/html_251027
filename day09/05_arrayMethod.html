@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>
+        배열 관련 메서드 : []
+        
+    </h1>
+    <h1>
+        - 유사배열을 사용제한이 되는 메서드들도 있음
+
+    </h1>
+    <h1>
+        - const array=[1,2,3,'a','b',{},[]] => 유사배열(혼합배열)
+    </h1>
+    <!-- 
+        - array.push(value) : 배열의 마지막 위치에 value 추가
+            => 배열의 길이를 리턴
+        - array.pop() : 배열의 마지막 요소를 제거
+            => 제거 요소를 리턴
+        - array.shift() ; (pop의 반대) 배열의 첫요소를 제거
+            => 제거 요소를 리턴
+        - array.unshift(value) : 배열의 첫 요소에 value를 추가
+            => 배열의 길이를 리턴
+        - array.join(value) : 배열의 값에 value 를 추가하여 하나의 문자열로 리턴
+            => split(String 메서드 중 구분자를 기준으로 잘라 배열로 리턴)
+    -->
+    <script>
+        const h1 = document.getElementsByTagName('h1');
+        console.log(h1);    // 유사배열
+
+        const h = document.querySelectorAll('h1');
+        console.log(h); // 유사배열
+
+        let str = 'apple, banana, kiwi';
+
+        console.log(str.split(","));
+        let array = str.split(',');
+        console.log(array.join(' / '));
+
+        console.log('---------------------');
+
+        const ourClass = [];
+        ourClass[ourClass.length] = 'kim';
+        ourClass.push('lee');
+        
+
+        console.log(ourClass.push('park'));
+        console.log(ourClass.pop('park'));
+        ourClass.push('choi');
+        ourClass.push('park');
+        // 배열의 첫요소 삭제
+        console.log(ourClass.shift());
+        // 배열의 첫요소로 삽입
+        console.log(ourClass.unshift('aaa'));
+        console.log(ourClass);
+
+
+    </script>
+</body>
+</html>

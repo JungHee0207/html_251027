@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>공지사항</h1>
+    <hr>
+    <form action="">
+        <p>
+            작성자 <input type="text" name="tester" value="오미란" readonly><br>
+            제목 <input type="text" name="title">
+            <label for="chk">
+                <input type="checkbox" value="공지" name="chk" id="chk">
+                공지
+            </label>
+        </p>
+        <p>
+            내용<br>
+            <textarea name="des" id="des" cols="50" rows="10"></textarea>
+        </p>
+        <hr>
+        <p>
+            파일첨부<br>
+            <input type="text" disabled><input type="file" name="file1"><br>
+            <input type="text" disabled><input type="file" name="file2"><br>
+            <input type="text" disabled><input type="file" name="file3"><br>
+        </p>
+        <pre>
+            <small>
+- 파일 확장자가 zip,pdf,hwp,doc,txt,xls,xlsx,ppt,pptx,jpg,jpeg,gif,png,egg,dwg,max,psd,ai인 파일만 <br>
+  업로드하실 수 있습니다.(파일명은 특수문자 ^, #, $ 등 & 공백 사용금지) <br>
+- 파일 업로드 시, 첨부파일 1개당 200MB 까지 가능 합니다.  
+            </small>
+        </pre>
+           
+        <hr>
+        <input type="reset" value="취소">
+        <input type="submit" value="등록">
+
+    </form>
+</body>
+</html>

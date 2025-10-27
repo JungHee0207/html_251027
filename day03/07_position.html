@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .p-box{
+            height: 150px;
+            background-color: rgb(249, 161, 54);
+            position: relative;
+        }
+        .box{
+            width: 100px;
+            height: 100px;
+            position: absolute;
+        }
+        .box1{
+            background-color: blue;
+            top: 25px;
+            left: 25px;
+        }
+        .box2{
+            background-color: blueviolet;
+            top: 25px;
+            left: 50%; /* 절반의 중심 앞쪽 */
+            /* transform: translate(x축, y축) */
+            transform: translate(-50%);
+        }
+        .box3{
+            background-color: brown;
+            top: 25px;
+            right: 25px;
+        }
+        /* 
+            마진 상쇄 효과 (margin collapsing) 
+            - 부모 요소에 padding-top, border-top를 추가하면 부모와 자식 요소가
+            분리되어 마진이 들어감.
+            - 부모요소에 overflow:hidden 추가 하면 마진 상쇄 효과를 방지
+        */
+        .outer{
+            width: 300px;
+            height: 300px;
+            background-color: aquamarine;
+            /* block 속성 태그일 경우 */
+            /*margin: 0 auto; 
+            overflow: hidden; */
+            position: relative;
+        }
+        .inner{
+            width: 100px;
+            height: 100px;
+            background-color: antiquewhite;
+            /*margin: 100px auto 0;*/
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+    <div class="p-box">
+        <div class="box box1"></div>
+        <div class="box box2"></div>
+        <div class="box box3"></div>
+    </div>
+
+    <div class="outer">
+        <div class="inner"></div>
+    </div>
+</body>
+</html>

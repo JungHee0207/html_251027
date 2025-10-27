@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>function2</title>
+
+</head>
+<body>
+    <h1>
+        함수의 파라미터와 리턴타입의 사용
+    </h1>
+
+    <!-- 
+        파라미터의 개수는 제한이 없으나, 너무 많으면 가독성이 떨어짐.
+        파라미터의 타입도 제한이 없음. 전달되는 그대로 사용
+        파라미터의 변수명은 외부 변수명과 같아도, 달라도 상관 없음.
+        return 유무에 따라 값을 리턴 받을수도 있고, 그냥 종료 가능
+        return 종료 시점을 결정
+    -->
+
+    <script>
+        let myName = '홍길동';
+        
+        function callName(name){
+            let yourName = '김철수';
+            console.log(`파라미터 => ${name}`);
+            console.log(`function 내부 선언된 변수 => ${yourName}`);  // 인지 불가능
+            console.log(`function 외부 선언된 변수 => ${myName}`);  // 인지가능
+            console.log(`function 외부 선언된 변수 => ${myName2}`);  // 인지가능
+        }
+        let myName2 = 'hong gil dong';
+        callName(myName); // 함수 호출시 외부 변수 전달
+        // console.log(yourName); // 함수 내부 변수 인지 불가능
+
+        // retun이 있는 함수
+        function sum(num1, num2){
+            return num1 + num2; // 함수 종료 및 반환값 지정
+            let result = num1 + num2;
+            return result; // 함수 종료 및 반환값 지정
+            console.log("이 코드는 실행되지 않음"); // return 이후 코드 실행 불가능
+        }
+
+        let s = sum(10,20); // 함수 호출 및 반환값 저장
+        console.log(`sum 함수의 반환값 : ${s}`);
+
+        // 표현식 함수 / 화살표 함수 => ES6 ver. 이후 추가된 함수 선언 방식
+        // 표현식 함수 : react, 라이브러리, js에서 사용이 많이 됨.
+        const myFunc = function(myName){
+            return `Hello ${myName} !`;
+        }
+
+        console.log(myFunc(myName));
+        let result = myFunc(myName);
+        console.log(result);
+
+        // 화살표 함수(arrow Function) : 간결하게 함수 선언 가능
+        const arrowFunc = (param1, param2) =>{
+            return param1 + param2;
+        };
+
+        let arrowResult = arrowFunc(100, 200);
+        console.log(`화살표 함수 결과 : ${arrowResult}`);
+
+        const arrowFunc2 = (p1,p2) => (p1+p2); // 파라미터 1개일 경우 () 생략 가능, 실행문이 1개일 경우 {} 와 return 생략 가능
+        console.log(`화살표 함수2 결과 : ${arrowFunc2(300,400)}`);
+
+        const arrowFunc3 = (p1,p2) => {
+            console.log(p1+p2);
+        }
+
+        arrowFunc3(500,600);
+
+        // 함수 생성
+        // 파라미터로 이름과 취미를 받아서 콘솔에 출력
+        // 홍길동은 독서를 좋아 합니다.
+
+        const printHobby = (name, hobby) =>{
+             console.log(`${name}은 ${hobby}를 좋아 합니다.`);
+             console.log(name + '은 ' + hobby + '를 좋아 합니다.');
+             console.log(name, '은 ', hobby, '를 좋아 합니다.');
+        }
+        printHobby('홍길동', '독서');
+
+        const printHobby2 = function(name, hobby){
+            console.log(`${name}은 ${hobby}를 좋아 합니다.`);
+            console.log(name + '은 ' + hobby + '를 좋아 합니다.');
+            console.log(name, '은 ', hobby, '를 좋아 합니다.');
+        }
+        printHobby2('김철수', '운동');
+
+        function func2(name, hobby){
+            console.log(`${name}은 ${hobby}를 좋아 합니다.`);
+            console.log(name + '은 ' + hobby + '를 좋아 합니다.');
+            console.log(name, '은 ', hobby, '를 좋아 합니다.');
+        }
+        func2('박영희', '게임');
+        
+    </script>
+</body>
+</html>

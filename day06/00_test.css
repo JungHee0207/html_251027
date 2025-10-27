@@ -1,0 +1,136 @@
+/* 기본 설정 */
+body {
+    font-family: 'Malgun Gothic', 'Dotum', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+/* 헤더 (Header) */
+header {
+    background-color: #004d99; /* 롯데월드 테마 색상 (진한 파랑) */
+    color: white;
+    padding: 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+    display: inline-block;
+}
+
+nav {
+    float: right;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #ffd700; /* 노란색 하이라이트 */
+}
+
+/* 메인 콘텐츠 (Main) */
+main section {
+    padding: 40px 0;
+    margin-bottom: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+main h2 {
+    color: #004d99;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+    margin-top: 0;
+}
+
+/* 히어로 섹션 (Hero) */
+#hero {
+    background-color: #e6f0ff;
+    text-align: center;
+    padding: 60px 0;
+    border-radius: 0; /* 전체 너비를 사용하도록 설정 */
+}
+
+#hero h2 {
+    font-size: 36px;
+    color: #004d99;
+    border: none;
+    margin-bottom: 15px;
+}
+
+.button {
+    display: inline-block;
+    background-color: #ff5733; /* 버튼 색상 (주황) */
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 15px;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #e04e2c;
+}
+
+/* 갤러리/전시 섹션 */
+.gallery {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.gallery .item {
+    width: 30%;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 15px;
+    text-align: center;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+/* 푸터 (Footer) */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 20px;
+}
+
+/* float clearfix */
+.container::after {
+    content: "";
+    display: table;
+    clear: both;
+}

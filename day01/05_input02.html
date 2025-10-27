@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- input 속성
+        모든 테그는 자신의 속성 값을 가지고 있음.
+        속성명="값" 속성명
+        name : 서버로 전송시 변수명으로 사용되는 속성
+        value : 서버로 전송시 값으로 사용되는 속성
+        id : 하나의 html 안에 중복 값이 불가능 => js 에서 태그를 구분하는 용도
+             id가 겹처도 에러는 안남. 작동을 잘 하지 않을수 있음.
+        class : css / js 구분자 역할을 함. 중복가능 / 여러개 가능
+        class="a b ab" => 3개의 클래스를 가짐 a b ab
+        readonly : 읽기 전용, 서버로 값을 보냄.
+        disabled : 비활성화, 서버로 값을 보내지 않음.
+        required : 필수속성
+        checked : radio, checkbox에서 기본값으로 선택
+
+    -->
+
+    <form action="">
+        <input type="text" name="a" value="name" required><br>
+        <input type="text" name="b" value="age" readonly><br>
+        <input type="text" name="c" value="dis" disabled><br>
+        <input type="text" name="d" placeholder="test"><br>
+        <!-- inner Text -->
+        <textarea name="e" id="" cols="30" rows="10">미리 입력해두는 글자</textarea><br>
+        <input type="submit" name="" value="submit"><br>
+
+    </form>
+
+</body>
+</html>

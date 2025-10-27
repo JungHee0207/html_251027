@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        색상관련 속성
+        - color : 글자색
+        - background-color : 배경색
+        - border-color  : 테두리색
+
+        색상 지정 방법
+        - 이미 지정된 이름을 사용하는 방법 : red, yello, blue, ...
+        - 생상 코드를 이용하는 방법 : 16진수 색상 코드 
+        - 색상 팔레트를 이용하는 방법
+            - rgb(0,0,0) 코드를 이용하는 방법
+            - rgba(0,0,0,0) : a 투명도 0~1  (0.5반투명)
+        - 그라디언트 : 여러 색상의 조합(https://cssgradient.io/)
+        - backgrount-color : linear-gradient(방향, 색상1, 색상2);
+    -->
+    <style>
+        div{
+            width: 300px;
+            height: 100px;
+            text-align: center;
+            line-height: 100px;
+        }
+        .color{
+            color: rgb(42, 165, 52,0.5);
+            background-color: rgb(80, 92, 255,0.393);
+        }
+        .bg-color{
+           
+            background: linear-gradient(90deg, rgba(105, 128, 138, 1) 0%, rgba(75, 148, 104, 1) 30%, rgba(161, 154, 108, 1) 100%);
+        }
+        .b-color{
+            border: 1px solid blue; /* 두께, 모양, 색을 한번에 */
+            /*
+            border: 1px;
+            border-style: solid;     선 모양 
+            border-color: blueviolet;
+            */
+        }
+        .box{
+            color: 1px solid rgba(5, 14, 6, 0.8);
+            border: 1px solid red;
+            background-color: chartreuse;
+
+        }
+    </style>
+</head>
+<body>
+    <!--  -->
+    <div class="color">글자색</div>
+    <div class="bg-color">배경색</div>
+    <div class="b-color">테두리색</div>
+    <div class="box">test</div>
+</body>
+</html>

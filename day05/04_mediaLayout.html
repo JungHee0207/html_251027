@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mediaLayout</title>
+    <!-- 
+        min-width : 작은 것부터 점차 크게
+    -->
+    <style>
+        .body{
+            margin: 0;
+            padding: 0;
+        }
+        .header{
+            height: 60px;
+            background-color: cadetblue;
+
+        }
+        .main-img{
+            height: 300px;
+            background-color: chartreuse;
+        }
+        .subject{
+            height: 350px;
+            background: brown;
+        }
+        .content{
+            height: 500px;
+            background: azure;
+        }
+        .sub{
+            height: 300px;
+            background: bisque;
+        }
+        .footer{
+            height: 200px;
+            background: aqua;
+        }
+        @media screen and (min-width : 800px) {
+            .header{
+                height: 60px;
+            }
+            .main-img{
+                height: 300px;
+            }
+            .subject{
+                height: 350px;
+            }
+            .content{
+                height: 500px;
+                width: 50%;
+                float: left;
+            }
+            .sub{
+                height: 500px;
+                width: 50%;
+                float: right;
+            }
+            .footer{
+            height: 200px;
+            clear: both;
+            }
+        }
+        @media screen and (min-width : 1200px) {
+            .header{
+                height: 60px;
+            }
+            .main-img{
+                height: 300px;
+            }
+            .subject{
+                height: 800px;
+                width: 50%;
+                float: left;
+            }
+            .content{
+                height: 400px;
+                width: 50%;
+                float: right;
+            }
+            .sub{
+                height: 400px;
+                width: 50%;
+                float: right;
+            }
+            .footer{
+                height: 200px;
+                clear: both;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header"></div>
+    <div class="main-img"></div>
+    <div class="subject"></div>
+    <div class="content"></div>
+    <div class="sub"></div>
+    <div class="footer"></div>
+</body>
+</html>

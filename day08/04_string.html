@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>String : 가장 많이 다루는 데이터 타입</h1>
+    <!-- 
+        - java 에서의 string method와 거의 유사함.
+        - 문자 데이터는 index(0부터 시작)를 가지고 있음.
+        - 문자열 값 내에서 <br> 개행은 하지 않는 것이 좋다.
+        - length : 문자열의 총길이
+        - new String() : 객체 타입으로 선언 가능 /  잘 쓰이지 않음
+        - 
+    -->
+    <!-- 
+        추출 관련 메서드 : substring(), substr(), slice()
+        문자 대체 관련 메서드 : replace(str, old, new) : 처음 찾은 값만 가능
+        - trim() : 양쪽 공백 제거
+        - padStrart(str, 길이, 채울문자) / pacEnd
+            예) 010101-1*****
+        - cahrAt(index) / indexOf(str, 문자)
+        - startWith(str, 문자) / endWith
+          해당 문자가 str 앞 / 뒤에 존재하는지 확인하는 메서드
+            return true / false
+
+    -->
+    
+    <script>
+        let str =  'apple, banana, orage';
+        // slice(start, end) // start 번지부터 end 번지까지 추출 end번지 미포함
+        // substring 과 동일한 기능
+        // substring(start, end);
+        // substr(start, count);
+
+        console.log(str.slice(0,5));
+        console.log(str.slice(-6)); // 끝에서 부터 추출 가능
+        console.log(str.substring(0,5));
+        console.log(str.substring(-6)); // 적용안됨. 전체문자 출력
+
+        console.log(str.slice(7,13));   // 7번지부터 13번지 전까지
+        console.log(str.substr(7,6));   // 7번지부터 6개
+        console.log('----------------------------');
+
+        let str2 = 'Hello java World~!! java';
+        // replace 처음 만나는 값만 변경
+        console.log(str2.replace('java', 'javascript'));
+
+        // replaceAll 전체 변경
+        console.log(str2.replaceAll ('java', 'javascript'));
+
+        // replace 정규표현식 사용가능.(RegExp)
+        // /java/옵션 => i(대소문자 구분X), g(전체검색)  ig
+        console.log(str2.replace(/java/g,'javascript'));
+
+        let padText = 'abc';
+        console.log(padText.padStart(10,'-'));    // 10 전체 길이
+
+        let rNum = '010101-3123126';
+        let rNum1 = rNum.slice(0,8);
+        let rNum2 = rNum.slice(0,8).padEnd(rNum.length,'*');
+        console.log(rNum1.padEnd(14,'*'));
+        console.log(rNum2);
+        // 성별 : 삼항연산자 사용가능
+        let id = rNum.charAt(rNum.indexOf('-')+1);
+        console.log((id==='1'||id==='3')? '남':'여');
+
+        let fullFileName = '20251024_javascript.String_method.html';
+        // 20251024 작성 일자만 추출
+        // 파일이름 추출 :  javascript.String_method
+        // 확장자 추출 : html
+        console.log(fullFileName.slice(0,fullFileName.indexOf('_')) );
+        console.log(fullFileName.slice(fullFileName.indexOf('_')+1,
+                    fullFileName.lastIndexOf('.')));
+        console.log(fullFileName.substr(fullFileName.length-4,4));
+        console.log(fullFileName.slice(fullFileName.lastIndexOf('.')+1, fullFileName.length))
+        console.log('ABC'.toLowerCase);
+        console.log(str.split(','));
+    </script>
+</body>
+</html>

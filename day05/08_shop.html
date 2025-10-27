@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        @import url(reset.css);
+        .container{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100vh;
+            background-size: cover;
+        }
+        .container>.nbar{
+            width: 90%;
+            margin: 0 auto;
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .container>.nbar>h1{
+            font-size: 30px;
+            font-weight: 700px;
+        }
+        .container>.nbar>ul{
+            width: 300px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .container>.nbar>ul>li>a{
+            font-size: 20px;
+            color: black;
+            font-weight: 700;
+        }
+        .container>.main-img{
+            width: 100%;
+            height: 500px;
+            background-image: url("../image/향수/향수메인.jpg");
+            background-size: cover;
+        }
+        .container>.our{
+            font-size: 30px;
+            font-weight: 700;
+            width: 100%;
+            text-align: center;
+            margin: 50px auto;
+        }
+        .container>.product{
+            width: 100%;
+            height: 200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        img{
+            width: 100px;
+            
+            box-sizing: border-box;
+        }
+        .container>.product>.product1{
+            margin: 0 auto;
+            height: 50px;
+            display: flex;
+            flex-direction: column;
+            background-image:url("../image/향수/상품2.jpg");
+        }
+        .container>.product>.product1>img{
+            
+            height: 200px;
+            background-image: url("../image/향수/상품2.jpg");
+        }
+        
+        .container>.product>.product2{
+            margin: 0 auto;
+            background-image: url("../image/향수/상품1.jpg");
+            display: flex;
+            flex-direction: column;
+        }
+        .container>.product>.product3{
+            margin: 0 auto;
+            background-image: url("../image/향수/상품1.jpg");
+            display: flex;
+            flex-direction: column;
+        }
+        .container>.product>.product4{
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    
+</body>
+    <div class="container">
+        <div class="nbar">
+            <h1>SIMPLE SHOP</h1>
+            <ul>
+                <li><a href="">Content</a></li>
+                <li><a href="">SHOP</a></li>
+                <li><a href="">Cart</a></li>
+                <li><a href="">Login</a></li>
+            </ul>
+        </div>
+        <div class="main-img"></div>
+        <div class="our">Our New Product</div>
+        <div class="product">
+            <div class="product1"> 
+                <img src="../image/향수/상품1.jpg" alt="">
+                <a href="">Perfume</a>
+                <a href="">35,000원</a>
+            </div>
+            <div class="product1">
+                <div class="img"></div> 
+                <a href="">Perfume</a>
+                <a href="">35,000원</a>
+            </div>
+            <div class="product1">
+                <div class="img"></div> 
+                <a href="">Perfume</a>
+                <a href="">35,000원</a>
+            </div>
+        </div>
+        <div class="product">
+            <div class="product2">
+                <a href="">Perfume</a>
+                <a href="">35,000원</a>
+            </div>
+            <div class="product2">
+                <a href="">Perfume</a>
+                <a href="">35,000원</a>
+            </div>
+            <div class="product2">
+                <a href="">Perfume</a>
+                <a href="">35,000원</a>
+            </div>
+        </div>
+        <div class="product">
+            <div class="product3">
+                <a href="">Perfume</a>
+                <a href="">35,000원</a>
+            </div>
+            <div class="product3">
+                <a href="">Perfume</a>
+                <a href="">35,000원</a>
+            </div>
+            <div class="product3">
+                <a href="">Perfume</a>
+                <a href="">35,000원</a>
+            </div>
+        </div>
+        <div class="product">
+            <div class="product4">
+                <a href="">Perfume</a>
+                <a href="">35,000원</a>
+            </div>
+            <div class="product4">
+                <a href="">Perfume</a>
+                <a href="">35,000원</a>
+            </div>
+            <div class="product4">
+                <a href="">Perfume</a>
+                <a href="">35,000원</a>
+            </div>
+        </div>
+        
+    </div>
+
+</html>

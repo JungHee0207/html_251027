@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <fieldset>
+        <legend>생년월일 확인</legend>
+        이름 : <input type="text" id="name"> <br>
+        주민번호 : <input type="text" id="rNum"> <br>
+        <button type="button" id="btn">확인</button>
+        <!-- 이름, 생년월일, 나이, 성별 출력 -->
+        <h3 id="result"></h3>
+    </fieldset>
+
+    <script>
+        document.getElementById('btn').addEventListener('click',()=>{
+            const result =  document.getElementById('result');
+            let name = document.getElementById('name').value;
+            let rNum = String( document.getElementById('rNum').value);
+            
+            let birth = rNum.substr(0,rNum.indexOf('-'));
+            console.log(birth);
+            let getNum = rNum.charAt(6);
+            console.log(getNum);
+            // 성별
+            let gender = (getNum =='1'||getNum=='3') ? '남':'여';
+            console.log(gender);
+
+            // 나이 
+            const today = new Date();
+            let todayYear = today.getFullYear();
+            let birthYear = Number(birth.substring(0,2));
+            let age = getNum <= 2 ? todayYear - (1900+birthYear) :
+                todayYear - (2000+birthYear)
+            console.log(age);
+
+            result.innerText = `이름:${name}, 생년월일:${birth}, 나이:${age}`;
+        });
+
+            /*
+        document.getElementById('btn').addEventListener('click',()=>{
+            
+            let name = document.getElementById('name').value;
+            let rNum = document.getElementById('rNum').value;
+            let birsday = rNum.slice(0,6);
+            console.log(rNum.slice(8,9));
+            let sex = (rNum.slice(7,8)==='1' ||rNum.slice(7,8)==='3')? '남':'여' ;
+            let today = new Date();
+
+            let age = Number(today.getFullYear())  - Number(birsday.slice(0,3));
+            console.log('year'+Number(today.getFullYear()));
+            console.log('year'+Number(birsday.slice(0,1)));
+            console.log(name);
+            console.log(rNum);
+            console.log(birsday);
+            console.log(sex);
+            console.log(age);
+
+        });
+        */
+    </script>
+</body>
+</html>

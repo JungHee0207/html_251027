@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="reset.css"> -->
+     <!-- 
+        width : 100%(부모의) 화면의 전체 가로
+        height : 100%(부모의 100%) 
+        vh / vw : 모니터(브라우저) 기준 높이
+
+     -->
+    <style>
+        /* link를 css 내부로 이동 */
+        @import url(reset.css);
+        
+        .container{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100vh; /* 화면의 전체 */
+            background: linear-gradient(rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.653));
+            background-image:   url(../image/풍경4.jpg);
+            background-size: cover;
+        }
+        .container>.nvabar{
+            width: 90%;
+            margin: 0 auto;
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .container>.nvabar>h1{
+            color: white;
+            font-size: 20px;
+            font-weight: 700;
+            
+        }
+        .container>.nvabar>ul{
+            display: flex;
+            justify-content: space-between;
+            width: 300px;
+        }
+        .container>.nvabar>ul>li{
+            margin: 0 10px;
+        }
+        .container>.nvabar>ul>a{
+            color: white;
+            font-weight: 700;
+        }
+        .container>.nvabar>ul>a:hover{
+            cursor: pointer;
+            color: rgb(174, 117, 25);
+        }
+        .container>.main{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            text-align: center;
+            color: white
+        }
+        .container>.main>h2{
+            font-size: 50px;
+            font-weight: 700;
+            margin-bottom: 40px;
+        }
+        .container>.main button{
+            border: 2px solid rgba(37, 71, 60);
+            font-size: 20px;
+            font-weight: 700;
+            padding: 10px 20px;
+            border-radius: 10px;
+            background-color: azure;
+        }
+
+        .container>.main button:hover{
+            cursor: pointer;
+            background-color: rgba(37, 71, 60);
+
+            color: azure;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="nvabar">
+            <h1>DESIGN</h1>
+            <ul>
+                <li><a href="">HOME</a></li>
+                <li><a href="">LOGIN</a></li>
+                <li><a href="">LOGIN</a></li>
+                <li><a href="">SIGNUP</a></li>
+            </ul>
+        </div>
+        <div class="main">
+            <h2>Welcome to Fornt-End World</h2>
+            <a href=""><button>Learn More</button></a>
+        </div>
+
+    </div>
+    
+</body>
+</html>

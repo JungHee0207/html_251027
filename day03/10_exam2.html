@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <style>
+        .menu-box{
+            width: 200px;
+            float: left;
+            background-color: blueviolet;
+        }
+        .menu-box>a{
+            text-decoration: none;
+            display: block;
+            border: 1px solid black;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            font-size: 20;
+            color: black;
+            border-bottom: none;
+        }
+        .menu-box>.end{
+            border-bottom: 1px solid black;
+        }
+        .menu-box>a:hover{
+            background-color: beige;
+        }
+        .image-box{
+            width: calc(100%-210px);
+            height: 700px;
+            float: left;
+            background-image: url(../image/배경화면.jpg);
+            background-position: center;
+            background-position: no-repeat;
+            background-size: cover;
+
+        }
+/*
+        .p-box{
+            width: 210px;
+            float: left;
+        }
+        .box{
+            width: 200px;
+            height: 50px;
+            border: 1px solid black;
+            border-collapse: collapse;
+            text-align: center;
+            font-size: 30;
+
+        }
+        */
+
+    </style>
+<body>
+    <div class="container">
+        <div class="menu-box">
+            <a href="">menu1</a>
+            <a href="">menu2</a>
+            <a href="">menu3</a>
+            <a href="" class="end">menu4</a>
+        </div>
+        <div class="image-box"></div>
+    </div>
+    <!-- 
+    <div class="p-box">
+        <div class="box">menu1</div>
+        <div class="box">menu2</div>
+        <div class="box">menu3</div>
+        <div class="box">menu4</div>
+    </div>
+    <div class="p-box">
+        <img src="../image/산.jpg" alt="">
+    </div>
+     -->
+</body>
+</html>

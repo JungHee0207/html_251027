@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        table : 표를 나타내는 태그(표 전체 박스)
+        tr : 행 ( 한 행을 의미)
+        td : 열 ( 한 칸을 의미)
+        th : 열 ( 제목열 가운데 정렬, 굵은 글씨)
+
+        3*4 테이블 생성
+        tr * 3
+        tr => td * 4   td * 12개
+        css에서 모양, 크기, 색, 선 지정
+        - 시멘틱 테그(html5)
+          thead / tbody / tfoor
+        caption : 테이블의 제목
+        - colspan / rowspan : 셀 병합
+
+    -->
+
+    <table border="1" width="400">
+        <caption>title</caption>
+        <thead>
+            <tr>
+                <th>제목1</th>
+                <th>제목2</th>
+                <th>제목3</th>
+                <th>제목4</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <th colspan="2">합계</th>
+            <td>9</td>
+            <td>12</td>
+        </tfoot>
+    </table>
+
+    <table border="1" width="400">
+        <tr>
+            <th>제목1</th>
+            <th>제목2</th>
+            <th>제목3</th>
+        </tr>
+        <tr>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+        </tr>
+        <tr>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+        </tr>
+        <tr>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+        </tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>null_coalescing 연산자</h1>
+    <h3>
+        널병합 연산자 EX2020 버전부터 지원
+    </h3>
+    <!-- 
+        - null, undefined를 판단하여 해당하면 대체값을 출력하는 연산자
+        - 좌측항이 null or undefined 면 우측값을 출력
+        - 좌측항이 null or undefined 가 아니면 좌측값을 그대로 출력
+        - ?? 표시
+    -->
+
+    <script>
+        let n ;      // undefined
+        console.log(n ?? 'nudefined 라면 우측항 출력');
+
+        let n2 = null;
+        // console.log(n ?? alert('null이면 출력'));
+
+        console.log('' ?? '빈문자는 가능 할까?');    // 빈문자 출력
+        console.log(NaN ?? '빈문자는 가능 할까?');  
+        console.log(false ?? '빈문자는 가능 할까?');  
+        
+    </script>
+</body>
+</html>
