@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>
+        정규표현식(Regular Expression) RegEx / RegExp
+    </h1>
+    <!-- 
+        - 정규표현식 : 문자 내에서 특정 내용을 찾거나 대체, 발췌 하는데 사용
+        - RegEx / RegExp 단어로 많이 사용함.
+        - 특정 데이터를 탐색, 확인, 존재여부를 쉽게 파악하기 위한 규칙
+        - 주로 데이터 분석과 같은 분야에서 사용(받드시 알고 있어야 함.)
+        - 웹분야에서는 password, 첨부파일 규칙 등, 회원가입 규칙 등에서만 사용
+        - 다른 언어에서도 거의 비슷한 방식으로 활용됨.
+
+    -->
+    <!-- 
+        / regexp / flag : / / => 시작기호 종료기호
+        - regexp : 패턴, flag : 옵션
+
+        - ('str').match(/regexp/) : str에서 매칭 되는 항목들을 배열로 리턴 없으면 null
+        
+        - (/regexp/).test('str') : 문자열이 정규식에 맞는지 체크 true/false 리턴
+        
+        - ('str').replace(/regexp', 'changeStr') : 
+            정규표현식에 매칭되는 항목을 바꿀 문자로 변경
+        
+            -('str').split(/regexp/) : 정규표현식에 매칭되는 항목으로 쪼개 배열로 리턴
+
+    -->
+
+    <!-- 
+        정규표현식에서 사용되는 플래그
+
+        i : 대소문자 구분 X / g : 전역검색 / m : 줄바꿈 포함
+
+        패턴 문자열
+
+        a-zA-Z : 영어 알파벳 / ㄱ-ㅎ가-힇 : 한글 / 0-9 : 숫자
+        . : 모든 문자열(숫자, 한글, 영어, 특수문자, 공백) => 줄바꿈은 X
+
+        \d : 숫자       \D : 숫자 아닌것
+        \s : 공백       \S : 공백 아닌것
+        \w : 영숫자     \W : 영숫자 아닌것
+        \특수기호 : 
+
+        검색패턴
+
+        - | or   (jpg|gif) / [jpg] => j or p or g
+        - [] : or의 묶음    / 문자들 중 하나
+            /abc/   => 'abc'를 포함하는 
+            /[abc]/ => 'a','b','c' 중 하나를 포함하는 
+            /[a-z+]/ => a~z 까지 중 하나를 포함(+ : 하나이상)
+            /[^abc]/ => 'a','b','c' 빼고(제외)
+
+        - {min, max} : min~max까지 글자수 제한
+
+        - ^ (시작문자) / $ (끝문자)  /^시작문자   끝문자$/
+
+        /\.(jpg|gif|png|bmp)/i 
+    -->
+    
+    <script>
+        let testText = 'This is Javascript Regular Expression';
+
+        console.log(testText.match(/is/g));
+        if(testText.match(/is/g)){
+            console.log('is 문장이 존재 합니다.');
+        }else{
+            console.log('is 문장이 존재하지 않습니다.');
+        };
+
+        console.log((/is/g).test(testText));    // 정규 표현식이 존재하는지 여부
+        console.log('-----------------------');
+        const fileName = ['abc.jpg', 'main.java','main.GIF','test.gif',
+                          'doc.pdf','code.js'];
+        // 이미지 파일 : 'abc.jpg', 'main.java','main.GIF','test.gif'
+        // 그외 파일 : 'main.java','doc.pdf','code.js'
+        // /\.(jpg|gif|png|bmp|jpeg)$/i 
+        
+        //let img = fileName.slice(/jpg|gif|GIF|png/g);
+        // console.log(fileName.match(/\.(jpg|gif|png|bmp)$/i));
+        // let tmp = fileName.match(/\.(jpg|gif|png|bmp)$/i)
+
+        const imageFile = [];
+        const otherFile = [];
+        for(let file of fileName){
+            if(file.match(/\.(jpg|jpeg|gif|png)$/i)){
+                console.log('이미지 파일' + file);
+                imageFile.push(file);
+            }else {
+                console.log('그외 파일'+ file);     
+                otherFile.push(file);       
+            }
+        }
+
+        console.log('이미지 파일' + imageFile);
+        console.log('그외 파일' + otherFile);
+
+        const imageFiles = fileName.filter(f => f.match(/\.(jpg|jpeg|gif|png|jpeg)$/i));
+        const otherFiles = fileName.filter(f => !f.match(/\.(jpg|jpeg|gif|png|jpeg)$/i));
+
+        console.log('이미지 파일' + imageFiles);
+        console.log('그외 파일' + otherFiles);
+
+        /*
+        fileName.forEach(v=>{
+            console.log(v);
+            if(v.match(/jpg/g)||v.match(/GIF/g)||v.match(/gif/g)||v.match(/png/g)){
+                console.log('이미지 파일' + v);
+            }else {
+                console.log('그외 파일' + v);
+            }
+
+            if(v.match(/\.(jpg|jpeg|gif|png)$/i)){
+                 console.log('이미지 파일1' + v);
+            }else {
+                console.log('그외 파일1' + v);
+            }
+        })
+*/
+
+        // reduce => 텍스트 누적
+        const result  = fileName.reduce((acc, file)=>{
+            if(file.match(/\.(jpg|jpeg|gif|png|jpeg)$/i)){
+                acc.image.push(file);
+            }else{acc.other.push(file);
+            }
+            return acc;
+        },{image:[], other:[]})
+
+        console.log(result);
+    </script>
+</body>
+</html>

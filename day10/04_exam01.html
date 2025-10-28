@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        가위바위보 이미지를 버튼 태그에 넣어 선택하여 가위바위보의 승률 계산
+    -->
+    <button id="btn1" onclick="play(0)"><img src="../image/가위바위보/math_img_1.jpg" alt=""></button>
+    <button id="btn2" onclick="play(1)"><img src="../image/가위바위보/math_img_2.jpg" alt=""></button>
+    <button id="btn3" onclick="play(2)"><img src="../image/가위바위보/math_img_3.jpg" alt=""></button>
+    <h3 id="result"></h3>
+    <h3 id="coment"></h3>
+
+    <script>
+        // 전역변수 결과변수
+        //let win = 0;
+        //let draw = 0;
+        //let lose = 0;
+        const resultCount ={
+            win:0,
+            draw:0,
+            lose :0
+        }
+
+        function play(player){
+            
+            const playStr = ['가위','바위','보'];
+            let com = randomNumber();
+            let result = getWinner(player, com);
+
+            resultCount[result]++;
+            // 결과 출력
+            let str = `player:${playStr[player]} / com:${playStr[com]} \n`;
+            str+= `player ${result} \n`;
+            str+=`현재 전적 \n`;
+            str += `win:${resultCount.win} / draw : ${resultCount.draw} / lose : ${resultCount.lose} \n`;
+            str += `승률 : ${getWinRate()} `;
+
+           document.getElementById('result').innerText = str;
+        }
+
+        // 승률을 계산하는 함수
+        function getWinRate(){
+            
+            return resultCount.win !=0 ?(resultCount.win /
+                (resultCount.win + resultCount.draw + resultCount.lose)) *100
+
+        }
+        // 랜덤 값을 리턴하는 함수
+        function randomNumber(){
+            return Math.floor(Math.random()*3);
+        }
+
+        // 승(win) 무(draw) 패(lose) 리턴하는 함수
+        function getWinner(userChoice, comChoice){
+            if(userChoice === comChoice){
+                return 'draw';
+            }else if(
+                // 0=가위, 1=바위, 2=보
+                (userChoice == 0 && comChoice == 2) ||
+                (userChoice == 1 && comChoice == 0) ||
+                (userChoice == 2 && comChoice == 1) 
+            ){
+                return 'win';
+            }else {
+                return 'lose';
+            }
+        }
+
+    </script>
+</body>
+</html>

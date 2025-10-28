@@ -5,17 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-       table, td{
-        border: 1px solid black;
-        border-collapse: collapse;
-
-       }
-
-        td, th {
-        border: 1px solid black;
-        padding: 6px 8px;
+        table, td{
+            border: 1px solid black;
+            border-collapse: collapse;
         }
-
+        table td{
+            width: 100px;
+            height: 30px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -23,53 +21,43 @@
     <div id="gugu"></div>
 
     <script>
-        /*
-        document.getElementById('btn').addEventListener('click', ()=>{
-         guguFunc();
-        });
-        
-        */
-        const gugu =  document.getElementById('gugu');
+        const gugu = document.getElementById('gugu');
 
-        /*
-            콜백함수 : 함수 안에서 다른 함수를 호출
-            - 전달인자로 다음 함수에 전달되는 함수
-            - 콜백함수를 전달할 때 () 붙이지 않는 이유는 함수 자체를 참조하여
+        /*  콜백함수 : 함수 안에서 다른 함수를 호출
+            - 전달인자(매개변수)로 다른 함수에 전달되는 함수
+            - 콜백함수를 전달할 때 () 붙이지 않는 이유는 함수 자체를 참조하여 
               다른 함수에게 전달하기 위해서 이다.
-              - () 를 붙이면 함수가 즉시 실행되어 버리지만, ()를 붙이지 않는 다면 
-                함수 객체 자체가 매개변수로 전달되어 콜백 함수를 넘겨받은 함수가 
-                원하는 시점에 직접 실행 할 수 있게 된다.
-
+            - ()를 붙이면 함수가 즉시 실행되어 버리지만, ()를 붙이지 않는다면
+              함수 객체 자체가 매개변수로 전달되어 콜백 함수를 넘겨받은 함수가 
+              원하는 시점에 직접 실행할수 있게 된다.
+            
             - ()가 있을 때 : 즉시 실행되어 그 반환값이 전달
-            - () 가 없을 때 : 함수 그 자체(함수 객체)가 전달
+            - ()가 없을 때 : 함수 그 자체(함수 객체)가 전달
         */
-        
-        document.getElementById('btn').addEventListener('click', guguFunc);
 
-        
+        /*document.getElementById('btn').addEventListener('click', ()=>{
+            guguFunc();
+            // 다른 코드 추가.
+        });*/
+
+        document.getElementById('btn').addEventListener('click', guguFunc);
+        console.log(guguFunc);
         function guguFunc(){
-            let incre = 1;
+            let incre = 1; // 증가값
             let str = `<table>`;
-                while(incre<10){
-                    let dan = 2;                                       
-                    
-                    str += `<td> ${dan} 단 `;
-                    str +=`<tr>`;
-                        while(dan<10){
-                            str += `<td> ${dan} * ${incre} = ${dan * incre} </td>`;
+                while(incre < 10){
+                    let dan = 2;
+                    str += `<tr>`;
+                        while(dan <10){
+                            str += `<td>${dan} * ${incre} = ${dan * incre}</td>`;
                             dan++;
                         }
-                    str+=`</td> </tr>`;
+                    str += `</tr>`;
                     incre++;
                 }
-
-            str += `</table>`;
-            console.log(str);
+                str += `</table>`;
             gugu.innerHTML = str;
         }
-
-        
-
     </script>
 </body>
 </html>
