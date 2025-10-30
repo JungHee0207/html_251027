@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 계좌 myAccount, yourAccount
+        // 객체(object)를 사용하여 생성 / class를 생성 
+
+        // 일반 객체로 생성
+        const myAccount = {
+            name : 'hong',
+            balance : 0,
+            // 입금
+            deposit:function(amount){
+                this.balance += amount;
+            },
+            // 출금
+            withdraw : function(amount){
+                if(this.balance < amount){
+                    console.log('잔액부족');
+                }else{
+                    this.balance -= amount;
+                }
+            },
+            // 이체
+            transfer : function(amount, otherAccount){
+                if(this.balance < amount){
+                    console.log('잔액부족');
+                }else{
+                    this.balance -= amount;
+                    otherAccount.balance += amount;
+                }
+            }
+        }
+
+        const yourAccount = {
+            name : 'kim',
+            balance : 10000,
+            // 입금
+            deposit:function(amount){
+                this.balance += amount;
+            },
+            // 출금
+            withdraw : function(amount){
+                if(this.balance < amount){
+                    console.log('잔액부족');
+                }else{
+                    this.balance -= amount;
+                }
+            },
+            // 이체
+            transfer : function(amount, otherAccount){
+                if(this.balance < amount){
+                    console.log('잔액부족');
+                }else{
+                    this.balance -= amount;
+                    otherAccount.balance += amount;
+                }
+            }
+        }
+
+        // 내 계좌에 입금 50000
+        myAccount.deposit(50000);
+        // 20000 출금
+        myAccount.withdraw(20000);
+        // 
+        myAccount.transfer( 10000, yourAccount);
+        console.log(myAccount, yourAccount);
+
+        console.log('----------------------------');
+
+        // class로 변경
+        class Bank{
+            constructor(name, balance){
+                this.name = name;
+                this.balance = balance;
+            }
+
+            deposit(amount){
+                this.balance += amount;
+                return this.balance;    // 잔액 리턴
+            }
+
+            withdraw(amount){
+                if(this.balance < amount){
+                    console.log('잔액부족');
+                }else{
+                    this.balance -= amount;
+                }
+
+                return this.balance;
+            }
+
+            transfer(amount, otherAccount){
+                if(this.balance < amount){
+                    console.log('잔액부족');
+                }else{
+                    this.balance -= amount;
+                    otherAccount.deposit(amount);
+                }
+                return this.balance;
+            }
+        }
+
+        const myAccount2 = new Bank('lim', 50000);
+        const yourAccount2 = new Bank('kim', 30000);
+        
+        console.log('입금 후 잔액 :'+  myAccount2.deposit(20000));
+        console.log('출금 후 잔액 :'+ myAccount2.withdraw(15000));
+        console.log(myAccount2, yourAccount2);
+        console.log('이체 후 잔액 :'+ myAccount2.transfer(10000,yourAccount2));
+
+        console.log(myAccount2, yourAccount2);
+
+    </script>
+</body>
+</html>

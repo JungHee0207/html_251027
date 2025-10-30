@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1></h1>
+    <!-- 
+        과목, 점수 input 2개 생성
+        추가 버튼 생성 => map에 저장 
+        출력 버튼 생성 => ul = > li 형태로 출력 html : 89
+        결과 버튼 생성 => 합계, 평균, 합격여부 (60점 이상이면 pass) => h3
+
+    -->
+    <fieldset>
+        <legend>과목 추가</legend>
+        과목 : <input type="text" id="subject"> <br>
+        점수 : <input type="text" id="score"> <br>
+        <button type="button" id="add">추가</button>
+        <button type="button" id="printBtn">출력</button>
+        <button type="button" id="resultBtn">결과</button>
+    </fieldset>
+    <ul id="ul"></ul>
+    <h3 id="h3"></h3>
+
+    <script>
+        const myMap = new Map();
+        const ul = document.getElementById('ul');
+        const h3 = document.getElementById('h3');
+
+        document.getElementById('add').addEventListener('click',()=>{
+            let subject = document.getElementById('subject');
+            let scores = document.getElementById('score');
+            let score =Number(scores.value);
+            
+            if(isNaN(score)||score < 0 || score > 100){
+                alert('0~100사이의 값을 입력하세요');
+                return;
+            }
+
+            myMap.set(subject.value, score);
+            subject.value = '';
+            scores.value = '';
+
+            let str = '';
+            myMap.forEach((v,k)=>str+= `<li> ${k} : ${v} </li>`);
+            ul.innerHTML = str;
+
+        } );
+
+        document.getElementById('printBtn').addEventListener('click',()=>{
+            let str = '';
+            myMap.forEach((v,k)=>str+= `<li> ${k} : ${v} </li>`);
+            ul.innerHTML = str;
+        });
+
+        // 결과 버튼 생성 => 합계, 평균, 합격여부 (60점 이상이면 pass) => h3
+        document.getElementById('resultBtn').addEventListener('click',()=>{
+            let sum = 0;
+            myMap.forEach((v)=> sum += v);
+
+            let avg = (sum / myMap.size).toFixed(2);;
+            let pass = avg>=60?'합격':'불합격';
+            
+            h3.innerText = 
+            `합계 : ${sum}, 평균 : ${avg}, 합격여부 : ${pass}`;
+        })
+    </script>
+
+</body>
+</html>

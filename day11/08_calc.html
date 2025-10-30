@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            width: 400px;
+            height: 600px;
+        }
+        .result{
+            width: 100%;
+            height: 100px;
+            color: black;
+            background-color: burlywood;
+            border-radius: 20px;
+            /* 내용이 안쪽으로 들여쓰기 되게 padding 추가 */
+            padding: 16px; 
+            box-sizing: border-box;
+            display: flex;
+            align-items: center; /* 수직 가운데 정렬 */
+        }
+        .result h1{ margin:0; font-size:24px }
+        /* #result id는 내부 h1 요소에 사용되므로 기본 마진 초기화 */
+        #result{ margin:0 }
+        .main{
+            width: 100%;
+            height: 400px;
+            color: black;
+            margin: 10px 0 10px 0;
+            top: 10px;
+            bottom: 10px;
+        }
+        .sub{
+            display: flex;
+            justify-content: space-between;
+            padding: 5px;
+        }
+        .bottom{
+            width: 100%;
+            height: 100px;
+            color: black;
+            background-color: brown;
+            border-radius: 20px;
+            /* 가운데 정렬 (수평 + 수직) */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 28px;
+            
+        }
+        .bottom>button{
+            width: 100%;
+            height: 100px;
+            color: black;
+            background-color: brown;
+            font-size: 28px;
+        }
+        
+        .sub>button{
+            width: 90px;
+            height: 90px;
+            color: black;
+            background-color: pink;
+            border-radius: 20px;
+            font-size: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="result">
+            <h1 id="result"></h1>
+        </div>
+        <div class="main">
+            <div class="sub">
+                <button type="button" value="7">7</button>
+                <button type="button" value="8">8</button>
+                <button type="button" value="9">9</button>
+                <button type="button" value="+">+</button>
+            </div >
+            <div class="sub">
+                <button type="button" value="4">4</button>
+                <button type="button" value="5">5</button>
+                <button type="button" value="6">6</button>
+                <button type="button" value="-">-</button>
+            </div>
+            <div class="sub">
+                <button type="button" value="1">1</button>
+                <button type="button" value="2">2</button>
+                <button type="button" value="3">3</button>
+                <button type="button" value="*">*</button>
+            </div>
+            <div class="sub">
+                <button type="button" value=".">.</button>
+                <button type="button" value="0">0</button>
+                <button type="button" value="=">=</button>
+                <button type="button" value="/">/</button>
+            </div>
+        </div>
+        <div class="bottom">
+            <button type="button" value="C">C</button>
+        </div>
+    </div>
+
+    <script>
+        const out = document.getElementById('result');
+        let arr = [];
+        let str = '';
+
+        // 문서 전체 클릭을 받아서 버튼 클릭이면 value를 읽어 결과에 표시
+        document.addEventListener('click', (e) => {
+            console.log('문서 클릭 위치', e.clientX, e.clientY);
+            // 클릭 대상이 버튼인지 확인 (이벤트 위임 패턴)
+            const btn = e.target.closest('button');
+            if (!btn) return; // 버튼이 아니면 무시
+
+            // 버튼의 value가 비어 있으면 표시 텍스트를 사용
+            const val = btn.value || btn.textContent.trim();
+            console.log('버튼 값:', val);
+            // 화면에 표시
+            
+            if(val == 'C'){
+                arr.length =0;
+                str = '';
+                out.textContent = '';
+                return;
+            }
+            str += String(val);
+            arr.push(val);
+            if(val == '='){
+                str = calcFun();
+            }
+            out.textContent = str;
+        });
+
+        function calcFun(){
+            let str1 ='';
+            let str2 = '';
+            let cal ='';
+            let resultNum =0;
+
+            arr.forEach(v=>{
+                switch(v){
+                    case '+': cal = '+'; break;
+                    case '-': cal = '-'; break;
+                    case '*': cal = '*'; break;
+                    case '/': cal = '/'; break;
+                    case '=': break;
+                    case 'C': break;
+                    default : if(cal == ''){
+                                str1 += v;
+                                }else{
+                                    str2 += v;
+                                }
+                }
+
+                console.log('str1:'+ str1 +', str2:'+ str2);
+
+                switch(cal){
+                    case '+': resultNum = Number(str1) + Number(str2); break;
+                    case '-': resultNum = Number(str1) - Number(str2); break;
+                    case '*': resultNum = Number(str1) * Number(str2); break;
+                    case '/': resultNum = Number(str1) / Number(str2); break;
+                  }
+            });
+            arr.length=0;
+            arr.push(resultNum);
+            return resultNum;            
+        }
+    </script>
+</body>
+</html>

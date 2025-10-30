@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        set을 생성하고, 1~10까지 랜덤수 5개를 채워서 출력(중복 X)
+
+        - 얕은 복사(shallow copy) : 원본객체의 주소 값만 복사하여 같은 
+            메모리 공간을 공유하는 방식
+        - 깊은 복사(deep copy) : 실제 데이터를 모두 복사하여 원본과 완전히
+            분리된 독립된 객체를 생성하는 방식
+
+        얕은 복사는 복사본을 변경하면 원본에도 영향을 주지만,
+        깊은 복사는 서로 독립적으로 적용 됨.
+    -->
+    <h1 id="result">
+
+    </h1>
+
+    <script>
+        const set = new Set();
+        //const arr = [];
+        const result =  document.getElementById('result');
+
+        
+        while(set.size <= 5){
+            let num = Math.floor(Math.random()*10) + 1;
+            set.add(num);
+        }
+        console.log(set);
+
+        // 1. string 로 변환
+        let str = '';
+        set.forEach(v=> str += ` ,${v} `);
+
+        // 2-1. 배열로 변환 출력
+        // spread operator (스프레드 연산자, 전개구문, ...) : 얕은 복사
+        const arr = [...set];
+        
+        // 2-2 Array.from() 메서드 이용
+        // 유사 배열 객체나 이터러블 객체를 얕은 복사하여 새로운 배열 객체로 생성
+        const arr2 = Array.from(set);
+        console.log(arr2);
+
+        // 깊은 복사
+        const arr3 = [];
+
+        set.forEach(v => {
+            arr3.push(v);
+        });
+        console.log(arr3);
+        result.innerText = arr3;
+        
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1{
+            font-size: 20px;
+        }
+        h3{
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>
+        set 을 이용한 lotto 만들기
+    </h1>
+    <!-- 
+        1~45까지 랜덤수 6개 중복 되지 않게 추출 => 출력
+        set 중복 제거 후 => 배열
+    -->
+    <button id="makeRandom">랜덤번호 6자리 생성(출력)</button>
+    <h1 id="printNum">로또번호 출력</h1>
+    
+    <button id="makeRandom2">당첨번호 7자리 생성(출력)</button>
+    <h1 id="printNum2">당첨번호 출력</h1>
+
+    <button id="ranking">당첨 확인</button>
+    <h3 id="printResult">당첨여부 출력</h3>
+
+    <script>
+        // 1~45까지 6자리 선택 : 사용자 번호
+        const lottoArr = [];
+        
+        // 1~45까지 7자리(6자리 + 보너스) : 당첨번호
+        const rNumArr = [];
+        let bonus = 0;      // 보너스 번호 넣는 용도
+
+        document.getElementById('makeRandom').addEventListener('click',()=>{
+            // 기존 배열에 값이 있다면 값 지우기
+            // set.clear() : set 비우기
+            // splice(index, count) : index 부터 count개 만큼 삭제 하고, 다른 내용으로 교체 변경
+            lottoArr.splice(0);     // 0부터 끝까지 삭제
+            randomNum(lottoArr,6);
+            document.getElementById('printNum').innerText ='';
+            document.getElementById('printNum').innerText = lottoArr;
+        })
+
+        document.getElementById('makeRandom2').addEventListener('click',()=>{
+            rNumArr.splice(0);
+            randomNum(rNumArr, 7);
+            // 보너스 번호 추출
+            bonus = rNumArr.pop();  // array 하나 삭제됨
+            document.getElementById('printNum2').innerText =`${rNumArr} [${bonus}]`;
+        })
+
+        document.getElementById('ranking').addEventListener('click', ranking);
+        
+        function ranking(){
+            let cnt = 0;
+            lottoArr.forEach(v=>{
+                if(rNumArr.includes(v)){
+                    cnt++;
+                }
+            })
+            console.log(cnt);
+
+            switch(cnt){
+                case 6: print='축~~~ 1등 !!';
+                case 5: 
+                    lottoArr.includes(bonus) ? print='축 2등' : print = '축3등';
+                    break;
+                case 4: print='축 4등';  break;
+                case 3: print='축 5등';  break;
+                default :print = '꽝!!'; break;
+            }
+            document.getElementById('printResult').innerText = print;
+        }
+
+        function randomNum(arr, num){
+            const set = new Set();
+            while(set.size < num){
+                let num = Math.floor(Math.random()*45)+1;
+                set.add(num);
+            }
+            set.forEach(v => arr.push(v));
+        }
+
+        /*
+        let makeRandom = document.getElementById('makeRandom');
+        let printNum = document.getElementById('printNum');
+        let makeRandom2 = document.getElementById('makeRandom2');
+        let printNum2 = document.getElementById('printNum2');
+        let ranking = document.getElementById('ranking');
+        let printResult = document.getElementById('printResult'); 
+        let lotto1 = new Set();
+        let lotto2 = new Set();
+        let bonus = null; // 보너스 번호 저장
+
+        function numberCount(){
+            let lotto = new Set();
+            console.log('---------------', Math.floor(Math.random()*45)+1);
+            while(lotto.size < 6){
+                lotto.add(Math.floor(Math.random()*45)+1);
+                console.log(lotto);
+            }
+            return lotto;
+        }
+
+        makeRandom.addEventListener('click', ()=>{
+            lotto1 = numberCount();
+            // 정렬해서 보기 좋게 표시
+            const arr = Array.from(lotto1).sort((a,b)=>a-b);
+            const ul = '<ul>' + arr.map(v=>`<li>${v}</li>`).join('') + '</ul>';
+            printNum.innerHTML = `<strong>내 번호:</strong>` + ul;
+            // 결과 초기화
+            printResult.innerText = '';
+        })
+
+        makeRandom2.addEventListener('click', ()=>{
+            lotto2 = numberCount();
+            // 보너스 번호는 lotto2와 중복되지 않게 생성
+            do {
+                bonus = Math.floor(Math.random()*45)+1;
+            } while (lotto2.has(bonus));
+
+            const arr = Array.from(lotto2).sort((a,b)=>a-b);
+            const ul = '<ul>' + arr.map(v=>`<li>${v}</li>`).join('') + '</ul>';
+            printNum2.innerHTML = `<strong>당첨 번호:</strong>` + ul + `<div>보너스: <strong>${bonus}</strong></div>`;
+            // 결과 초기화
+            printResult.innerText = '';
+        })
+
+        ranking.addEventListener('click',()=>{
+            // lotto1: 내번호, lotto2: 당첨번호, bonus: 보너스
+            if (!lotto1 || lotto1.size < 6){ alert('먼저 내 번호 6개를 생성하세요.'); return; }
+            if (!lotto2 || lotto2.size < 6 || bonus == null){ alert('먼저 당첨 번호와 보너스를 생성하세요.'); return; }
+
+            // 일치 개수 계산
+            let matchCount = 0;
+            lotto1.forEach(v=>{ if (lotto2.has(v)) matchCount++; });
+            const bonusMatch = lotto1.has(bonus);
+
+            let rankMsg = '';
+            if (matchCount === 6) rankMsg = '1등';
+            else if (matchCount === 5 && bonusMatch) rankMsg = '2등';
+            else if (matchCount === 5) rankMsg = '3등';
+            else if (matchCount === 4) rankMsg = '4등';
+            else if (matchCount === 3) rankMsg = '5등';
+            else rankMsg = '낙첨';
+
+            printResult.innerHTML = `일치 개수: <strong>${matchCount}</strong>개` + (bonusMatch? ' (보너스 일치)':'') + `<br>결과: <strong>${rankMsg}</strong>`;
+        })
+        */
+    </script>
+</body>
+</html>

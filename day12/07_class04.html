@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        // 생성자 함수 : 클래스를 함수화
+        일반 함수랑 생성자 함수는 별 차이가 없음.
+
+        - 반드시 new 키워드를 통해 실행
+        - 함수의 첫글자가 대문자 일 것.
+    -->
+
+    <script>
+        class PersonClass{
+            constructor(first, last, age, addr){
+                this.firstName = first;
+                this.lastName = last;
+                
+            }
+
+            get personInfo(){
+                return `${this.firstName} ${this.lastName} (${this.age}) / ${this.addr}`;
+            }
+
+        }
+
+        const my = new PersonClass('kim','minji',20,'seoul');
+        console.log(my);
+        console.log(my.personInfo);     // getter / setter는 ()가 없음.
+
+        // PersonClass => 생성자 함수로 변환
+        function PersonClassObject(first, last, age, addr){
+            this.firstName = first;
+            this.lastName = last;
+            this.addr =addr;
+            this.age = age;
+            this.getPersonINfo = function(){
+                return `${this.firstName} ${this.lastName} (${this.age}) / ${this.addr}`;
+            }
+        }
+
+        let me = new PersonClassObject('lee','minji',30,'seoul');
+
+        console.log(me);
+
+        console.log(me.getPersonINfo());        // 함수 ()
+
+        // 객체로 생성
+        const person = {
+            firstName:'',
+            lastName:'',
+            age:'',
+            address:'',
+            setInfo:function(first,last,age,addr){
+                this.firstName = first;
+                this.lastName = last;
+                this.age = age;
+                this.address = addr;
+            },
+            get personInfo(){
+                return `${this.firstName} ${this.lastName} (${this.age}) / ${this.addr}`;
+            },
+            set setFirstName(first){
+                this.firstName = first;
+            }
+
+        }
+
+        person.setInfo('hong','gildong',40,'seoul');
+        console.log(person);
+        console.log(person.personInfo);     // get
+        // set 
+        person.setFirstName = 'kim';
+        console.log(person.personInfo);
+    </script>
+</body>
+</html>

@@ -4,18 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        button{
+            width: 300px;
+            height: 300px;
+        }
+    </style>
 </head>
 <body>
     <!-- 
         가위바위보 이미지를 버튼 태그에 넣어 선택하여 가위바위보의 승률 계산
     -->
-    <button id="btn1" onclick="play(0)"><img src="../image/가위바위보/math_img_1.jpg" alt=""></button>
-    <button id="btn2" onclick="play(1)"><img src="../image/가위바위보/math_img_2.jpg" alt=""></button>
-    <button id="btn3" onclick="play(2)"><img src="../image/가위바위보/math_img_3.jpg" alt=""></button>
+    <button id="0" onclick="play(0)"><img src="../image/가위바위보/math_img_1.jpg" alt=""></button>
+    <button id="1" onclick="play(1)"><img src="../image/가위바위보/math_img_2.jpg" alt=""></button>
+    <button id="2" onclick="play(2)"><img src="../image/가위바위보/math_img_3.jpg" alt=""></button>
     <h3 id="result"></h3>
     <h3 id="coment"></h3>
 
     <script>
+        document.addEventListener('click',(e)=>{
+            console.log(e.target.id); 
+            // id가 존재 할 때만 작동
+            if(e.target.id){
+                play(e.target.id);
+            }
+        })
+
         // 전역변수 결과변수
         //let win = 0;
         //let draw = 0;
@@ -38,7 +52,7 @@
             str+= `player ${result} \n`;
             str+=`현재 전적 \n`;
             str += `win:${resultCount.win} / draw : ${resultCount.draw} / lose : ${resultCount.lose} \n`;
-            str += `승률 : ${getWinRate()} `;
+            str += `승률 : ${getWinRate().toFixed(2)} `;
 
            document.getElementById('result').innerText = str;
         }
@@ -47,7 +61,7 @@
         function getWinRate(){
             
             return resultCount.win !=0 ?(resultCount.win /
-                (resultCount.win + resultCount.draw + resultCount.lose)) *100
+                (resultCount.win + resultCount.draw + resultCount.lose)) *100 :0;
 
         }
         // 랜덤 값을 리턴하는 함수

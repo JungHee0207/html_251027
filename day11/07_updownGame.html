@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        1~99까지의 숫자 중 하나를 랜덤으로 선택하여 해당 숫자를 맞추는 게임
+    -->
+    <div>
+        <button id="random">랜덤 숫자 생성 버튼</button> 
+        <button id="re"> 다시시도</button>
+        <h1 id="printMsg"></h1>
+    </div>
+    <div>
+        <input type="text" id="myNum">
+        <button id="compareNum">제출</button>
+        <h1 id="result"></h1>
+    </div>
+
+    <script>
+        let comNum = 0; // Math.floor(Math.random*100)+1;
+        let count = 0;
+
+        // 새로고침(다시시도)
+        document.getElementById('re').addEventListener('click',()=>{
+            window.location.reload();
+            location.reload();      // window는 생략 가능
+        })
+
+        document.getElementById('random').addEventListener('click',()=>{
+                comNum = Math.floor(Math.random()*99)+1
+                console.log(comNum);
+                document.getElementById('printMsg').innerText = '컴퓨터가 랜덤수를 생성 했습니다..(1~99)';
+            });
+
+         document.getElementById('compareNum').addEventListener('click',()=>{
+                let num =  document.getElementById('myNum').value;
+                console.log(num);
+
+                if(comNum ==0){
+                    alert('랜덤 숫자 생성 버튼을 클릭하세요');
+                    return;
+                };
+
+                if(isNaN(num) || Number(num) <= 0 || Number(num) >= 100){
+                    alert('0~100까지의 숫자를 입력하세요!!');
+                    document.getElementById('myNum').value = '';
+                    return;
+                }
+
+                let str = document.getElementById('result').innerText;
+                
+                count++;
+                if(Number(num) < comNum){
+                    str += `${count} 번째 ${num} UP \n`;
+                }else if(Number(num) > comNum){
+                    str += `${count} 번째 ${num} DOWN \n`;
+                }else{
+                    str += `${count} 번째 ${num} 정답`
+                    comNum = 0;
+                }
+                console.log(str);
+                document.getElementById('result').innerText = str;
+                document.getElementById('myNum').value='';
+            })
+    </script>
+
+</body>
+</html>
