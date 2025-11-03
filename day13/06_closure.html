@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <h1>
+        closure (클로저) : 함수와 그 함수가 선언될 당시의 렉시컬 환경을 기억하고, 
+            그 스코프에 있는 변수에 접근 할 수 잇는 함수.
+    </h1>
+
+    <!-- 
+        - 렉시컬 환경 : 함수가 선언된 시점의 외부 스코프와 변수드을 기억하는 환경
+
+        - 클로저는 이전의 상태를 기억하기 위해 사용
+        - 전역변수는 언제든지 누구나 접근할 수 있고, 변경 할 수 있기 때문에
+            다른 js 파일들에 의한 변경, 충돌 오류의 원인이 될수 있음.
+
+        - 데이터 은닉 : 외부 변수에 직접 접근을 막고, 특정 함수를 통해서만 접근하게 
+            하여 데이터를 보호
+        - 상태 유지 : 콜백함수나 이벤트 핸들러 등에서 데이터를 안전하게 보관하고
+            재사용 할 수 있게 보호
+    -->
+
+    <button class="toggle">toggle</button>
+    <div class="box" style="width: 100px; height: 100px; background-color: red;"></div>
+
+    <script>
+        let box = document.querySelector('.box');
+        let toggleBtn = document.querySelector('.toggle');
+
+        function closure(){
+            let isShow  = false;    // true 
+
+            // 콜로저를 반환
+            return function(){
+                box.style.display = isShow ? 'block' : 'none';
+                isShow = !isShow;
+            }
+        }
+
+        let toggle = closure();     // 클로저 반환
+        console.log(toggle);
+
+        // 이벤트에 할당
+        toggleBtn.addEventListener('click', toggle);
+
+
+    </script>
+
+    <button id="count">counter</button>
+    <h3 id="result"> </h3>
+    <script>
+        const h3 = document.getElementById('result');
+        const count = document.getElementById('count')
+
+        function outer(){
+            let count = 0;  // 외부 변수
+
+            function  inner(){
+                count++;
+                h3.innerText = count;
+            }
+            return inner;
+        }
+
+        const counter = outer();
+        count.addEventListener('click', counter);
+
+
+    </script>
+
+    <h1 id="print">0</h1>
+    <button id="plusBtn"> + </button>
+    <button id="minusBtn"> - </button>
+
+    <script>
+        function countFatory(){     // 외부 함수
+            let count = 0;
+
+            return function(type){
+                if(type == 'plus'){count++}
+                else if(type =='minus'){
+                    if(count == 0){
+                        count = 0;
+                    }else{                    
+                        count--;
+                     }
+
+                }
+                document.getElementById('print').textContent = count;
+            }
+        }
+
+        const counter2 = countFatory();
+
+        document.getElementById('plusBtn').addEventListener('click',()=>{
+            counter2('plus');
+        })
+
+        document.getElementById('minusBtn').addEventListener('click',()=>{
+            counter2('minus');
+        })
+    </script>
+</body>
+</html>

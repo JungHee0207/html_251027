@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            text-align: center;
+        }
+
+        header{
+            margin: 50px auto;
+        }
+        header>h1{
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;    
+        }
+        header>h3{
+            font-family: 'Times New Roman', Times, serif;
+        }
+        section{
+            display: flex;
+            justify-content: center;
+
+        }
+        section>div{
+            margin: 0 30px;
+            text-align: left;
+            border: 1px solid silver;
+            padding: 10px;
+            border-radius: 20px;
+            box-shadow: 5px 5px 5px silver;
+        }
+        section>div>div:first-child{
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-size:  18px;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json
+    -->
+
+    <header id="header"></header>
+    <section id="section"></section>
+    <script>
+        const header = document.getElementById('header');
+        const section = document.getElementById('section');
+
+        // HTML
+        document.addEventListener('DOMContentLoaded', ()=>{
+            superHero().then(result => printData(result));
+
+        });
+
+        // 데이터 로드
+        async function superHero() {
+            try{
+                const resp = await fetch('https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json');
+                const result = await resp.json();
+                return result;
+
+            }catch(error){
+                console.log(error);
+            }
+        }
+
+        // 출력 함수
+        function printData(obj){
+            console.log(obj);
+            // header H1 / h3
+            // h1 => squadName
+            // h3 => homeTown / formed
+            // 
+            let str = '';
+            str += `<h1>${obj.squadName}</h1>`;
+            str += `<h3>homeTown : ${obj.homeTown} / formed : ${obj.formed} </h3>`;
+
+            header.innerHTML = str;
+
+            // section => div => div*4 => 마지막 div => ul =>li
+            for(let i=0;i<obj.members.length;i++){
+                let member = obj.members[i];
+                console.log(member);
+                let memberStr = '<div>';
+                    memberStr += `<div>${member.name}</div>`;
+                    memberStr += `<div>SecretIdentity : ${member.secretIdentity}</div>`;
+                    memberStr += `<div>Age : ${member.age}</div>`;
+                    memberStr += `<div>SuperPowers : <ul id="power${i}"></ul>`;
+                    
+
+                    /*
+                    // ul => li
+                    for(const p of member.powers){
+                        memberStr += `<li>${p}</li>`;
+                    }
+                    memberStr += `</ul>`;   */
+
+                    memberStr += '</div></div';
+
+                    section.innerHTML += memberStr;
+                    member.powers.forEach(v=>{
+                        document.getElementById(`power${i}`).innerHTML += 
+                        `<li>${v}</li>`;
+                    });
+                }
+        }
+            /*
+
+            
+  "squadName" : "Super Hero Squad",
+  "homeTown" : "Metro City",
+  "formed" : 2016,
+  "secretBase" : "Super tower",
+  "active" : true,
+  "members" : [
+    {
+      "name" : "Molecule Man",
+      "age" : 29,
+      "secretIdentity" : "Dan Jukes",
+      "powers" : [
+        "Radiation resistance",
+        "Turning tiny",
+        "Radiation blast"
+      ]
+    },
+    {
+      "name" : "Madame Uppercut",
+      "age" : 39,
+      "secretIdentity" : "Jane Wilson",
+      "powers" : [
+        "Million tonne punch",
+        "Damage resistance",
+        "Superhuman reflexes"
+      ]
+    },
+    {
+      "name" : "Eternal Flame",
+      "age" : 1000000,
+      "secretIdentity" : "Unknown",
+      "powers" : [
+        "Immortality",
+        "Heat Immunity",
+        "Inferno",
+        "Teleportation",
+        "Interdimensional travel"
+      ]
+        */
+        
+    </script>
+
+</body>
+</html>

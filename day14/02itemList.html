@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            text-align: center;
+        }
+        form{
+            width: 600px;
+            background-color: rgb(134, 206, 182);
+            margin: 0 auto;
+            padding: 30px 40px;
+            box-sizing: border-box;
+        }
+        form>input{
+            border: none;
+            outline: none;
+            padding: 10px;
+            width: 300px;
+            border-radius: 5px;
+        }
+        form>button{
+            padding: 8px;
+            border: none;
+            background-color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+        ul{
+            margin: 0 auto;
+            padding: 0;
+            list-style: none;
+            width: 600px;
+            box-sizing: border-box;
+        }
+        ul li{
+            padding: 12px 20px;
+            background-color: rgb(236, 241, 100);
+            position: relative;
+            text-align: left;
+        }
+        ul li .close{
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 12px 20px;
+            cursor: pointer;
+        }
+        ul li:nth-child(odd){
+            background-color: rgb(238, 197, 203);
+        }
+    </style>
+</head>
+<body>
+    <h1>여행 준비물 점검 목록</h1>
+    <form action="">
+        <input type="text" id="item">
+        <button type="button" id="btn">추가</button>
+    </form>
+    <div>
+        <ul id="itemList"></ul>
+    </div>
+    <script>
+        // todoList(CRUD)
+        // C : create (생성) => item 생성 => 저장공간에 저장
+        // R : read (읽기) => item 배열을 읽어서 출력 
+        // U : update (수정) => X
+        // D : delete (삭제) => item 배열에서 삭제
+
+        const itemList=[];
+
+        document.getElementById('btn').addEventListener('click',()=>{
+            const item = document.getElementById('item');
+            if(item.value == ''){
+                alert('아이템 값이 없습니다.');
+                item.focus(); // 커서 보내기
+            }else{
+                itemList.push(item.value);
+                item.value=''; // 추가 후 input value 비우기
+                item.focus(); // 커서 보내기
+                // 배열을 화면에 뿌리기
+                printData();
+            }
+            console.log(itemList);
+        });
+
+        document.getElementById('itemList').addEventListener('click', (e)=>{
+            console.log(e.target.classList);
+            // class : 배열로 리턴  classList  => DOMTokenList
+            // value == 'close' / id == 'close'
+            // classList는 배열이기 때문에 contains를 이용해서 확인
+            // data-no  e.target.dataset.no == ''
+            if(e.target.classList.contains('close')){
+                console.log(e.target);
+                // 삭제 버튼 클릭시...
+                // 삭제
+                let i = e.target.id;
+                // 배열에서 해당 번지 1개 지우기
+                // splice(번지, 개수);
+                itemList.splice(i,1);
+            }
+
+            // 삭제 후 데이터 출력
+            printData();
+        });
+
+        function printData(){
+            // itemList 출력
+            let list = '';
+            for(let i=0; i<itemList.length; i++){
+                list += `<li> ${itemList[i]} <span class="close a b" id="${i}">❌</span></li>`;
+            }
+            document.getElementById('itemList').innerHTML = list;
+        }
+
+    </script>
+</body>
+</html>

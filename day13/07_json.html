@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        화면에서 -> 서버로 보낼때 
+        object -> string
+
+        => JSON.stringify(jsonObj);
+
+        서버로부터 -> 화면으로 받을 때
+        string -> object
+        => JSON.parse(StringData);
+    -->
+
+    <script>
+        const cake = {
+            id:'1234',
+            type:'donut',
+            name:'donut',
+            image:{
+                url:'../image/001.jpg',
+                width:'200',
+                height:'50'
+            }
+        }
+
+        console.log(cake);
+        // cake object => string 변환
+        let cakeString = JSON.stringify(cake);
+        console.log(cakeString);
+
+        //{"id":"1234","type":"donut","name":"donut","image":{"url":"../image/001.jpg","width":"200","height":"50"}}
+
+        let cakeObj = JSON.parse(cakeString);
+        console.log(cakeObj);
+        console.log('-------------------');
+        // cakeObj를 콘솔에 key : value 형태로 출력
+        for(let key in cakeObj){
+            if(key === 'image'){
+                for(const k in cakeObj[key]){
+                    console.log(`${k} : ${cakeObj[key][k]} `);
+                }
+            }else{
+
+                console.log(`${key} : ${cakeObj[key]} `);
+            }
+        }
+
+        Object.keys(cakeObj).forEach(k =>{
+            console.log(k + ':' + cakeObj[k]);
+            if(k == 'image'){
+                Object.keys(cakeObj[k]).forEach(key=>{
+                    console.log(key+":"+cakeObj[k][key])
+                })
+            }
+        })
+
+        console.log(Object.keys(cakeObj));
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>
+    parameter : 자바스크리의 파라미터 특징 / 기능
+    </h1>
+
+    <!-- 
+        - 파라미터의 개수와 상관없이 함수(메서드) 명이 같다면 호출가능.
+        - 파라미터의 개수가 불일치하여 받지 못하는 값이 있다면  undefined 처리
+        - 값을 받아오지 못하는 파라미터가 undefined 처리가 되는 것을 막기 위해서
+            기본값 설정을 할 수 잇음 . => optional parameter
+        - 파라미터는 arguments라는 프로퍼티로 파라미터를 관리
+        - arguments 배열로 담겨서 관리됨.
+        - optional parameter 는 저장 안됨.
+        - optional parameter 는 다른 파라미터보다 뒤에 있어야 한다.(가장 끝에 존재)
+
+        - rest parameter : 남는(이외의, 남는것들) 파라미터
+        - 사용할 파라미터는 일반 파라미터에 저장하고, 나머지 파라미터들을 통합하여
+            배열로 배정하는 기법
+        - ... : spread 연산자라고 하고, 배열, 객체를 복사할 때도 사용
+    -->
+
+    <script>
+
+        function testFunc(p1, p2, p3, p4=0,p5=0){
+            console.log(p1, p2, p3, p4,p5);
+            console.log(arguments);
+        }
+        testFunc(1,2,3);
+        testFunc(1,2,3,4);
+        testFunc(1,2,3,4,5);
+        testFunc(1);
+
+        function testFunc2(){
+            console.log('parameter X');
+
+        }
+        // 함수에서 파라미터를 받지 않아도 에러가 나지 않음 .
+        testFunc2(1);
+        
+        // optional parameter 구조
+        function opFunc(p,x){
+            let y = x;
+            if(y == undefined){
+                y=0;
+            }
+            console.log(p,y);
+        }
+
+        opFunc(1);
+        console.log('-----------------');
+        // rest parameter
+        function restFunc(a,b, ...others){
+            let sum =0;
+            console.log(a,b);
+            console.log(others);
+            console.log(arguments);
+            sum = a+b;
+            for(let arg of others){
+                sum+=arg;
+            }
+            console.log(sum);
+        }
+
+        restFunc(1,2,3,4,5,6);
+        restFunc(1,2);      // others 배열이 비어있음.
+
+        console.log('------------------');
+        // ... spread 연산자를 이용한 배열 복제(얕은 복사)
+        const oldArr = ['a','b','c','d','e','f'];
+        let newArr = [...oldArr];
+
+        console.log(newArr);
+
+        let newObj = {...oldArr};
+        console.log(newObj);
+
+        let num=[1,2,3,3,4,5,6,7,8,9];
+        function sum(x,y,z){
+            return x+y+z;
+        }
+
+        let a  = sum(...num);
+        console.log(a);
+
+        restFunc(...num);
+    </script>
+</body>
+</html>

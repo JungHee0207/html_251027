@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Ajax</h1>
+    <!-- 
+        비동기 통신(asynchronous communication) : ajax
+
+        - 데이터 통신 방식 : 동기, 비동기
+
+        동기방식(synchronous) : 직렬식
+        동시에 일어나는 요청을 하면 바로 응답을 받는 방식
+        순서적임.
+        요청을 하면 html 페이지로 리턴
+        <form action=""></form>
+
+        비동기 방식(asynchronous) : 병렬식
+        특정 작업이 완료될 때까지 기다리지 않고, 다음 작업을 순서대로 실행 방식
+        각자 작업이 독립적임.
+        요청에 대한 응답이 객체로 리턴
+        장점 : 자원 활용이 효율적
+        단점 : 작업의 복잡성이 증가 할 수 있음.
+
+        - 동기방식 : 직관적, 설계가 간단하다.
+        - 결과가 주어지기 전까지 아무것도 못하고 대기해야 하는 단점이 있음.
+
+        - 비동기 : 설계가 복잡함.
+        - 결과가 주어지는 시간이 걸려도, 다른 작업을 할 수 잇음. 효율적임.
+
+        비동기 방식 : ajax, jquery $.ajax()
+
+        async / await : 비동기 통신 키워드
+        async function : 함수 선언 앞에 붙이는 키워드
+        그 함수의 리턴 객체는 promise 객체로 리턴됨.
+
+        await : 순차 처리가 되어야 할 때 사용 
+        순차 코드 실행시 지연로딩, 지연 실행 상황이 발생하면 코드를 
+        순차 진행 할 수 있게 보증하는 키워드
+        
+        content-type : 클라이언트와 서버간의 데이터 형식을 지정하는 헤더
+        - 응답 데이터가 어떤 데이터 인지 알려주는 역할
+        - application/json
+        - text/plain
+        - multpart/form-data
+        - text/html; charset=UTF-8
+
+        http://jsonplaceholder.typicode.com/
+    -->
+
+    <!-- <form action="" method="get"></form> -->
+
+    <button id="btn">데이터 불러오기</button>
+    <ul id="ul"></ul>
+
+    <script>
+        document.getElementById('btn').addEventListener('click',()=>{
+            // asyncFunc().then(re => console.log(re));
+            asyncFunc().then(re => printData(re));
+        })
+
+        function printData(obj){
+            const ul = document.getElementById('ul');
+            let str = '';
+            for(const key in obj){
+                str += `<li> ${key} : ${obj[key]}</li>`
+            }
+            ul.innerHTML = str;
+        }
+
+        async function asyncFunc() {
+            try{
+                // resp => response(응답객체) / request(요청)
+                const resp = await fetch('http://jsonplaceholder.typicode.com/todos/10');
+                //console.log(resp.json());
+                
+                const result = await resp.json();
+                console.log(result);
+                
+                return result;
+
+            }catch(error){  
+                console.log(error);
+            }
+        }
+    </script>
+</body>
+</html>

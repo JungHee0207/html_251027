@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Call, Apply, Bind</h1>
+    <!-- 
+        함수를 호출하는 방법
+        1. 함수 뒤에 ()를 붙이는 것
+        2. call, apply 하는 방법
+
+        함수명.call(this, params...);
+        this : 호출하려는 함수 주체(자신의 함수: null);
+
+        함수명.apply(this,[params...]);
+        this : 호출하려는 함수 주체(자신의 함수 : null);
+
+        - call을 써서 this를 정의 해준다면 다른 객체의 파라미터나 메서드를 
+            자시의 것마냥 사용 할 수 있다.
+
+        - this는 전역객체의 window로 정해져 있다.
+        - 몇가지 방법으로 window를 다른 것으로 바꿀 수 있음.
+        - call, apply, bind 에서 첫번째 인자로 다른것을 넣어주면 this를 
+            바꾸는 방법 중 하나.
+
+        - bind 는 함수가 가리키는 this만 바꾸고 호출은 하지 않음.
+        - this를 정의하고 나서 그 함수를 복사해 새로운 함수를 만들어서 리턴
+
+        - call, apply는 비슷하지만 호출은 안하고, 함수만 반환
+
+    -->
+
+    <script>
+        const example = function(a,b,c){
+            return a + b + c;
+        }
+
+        let a= example(1,2,3);
+        let b = example.call(null, 1,2,3);
+        let c = example.apply(null,[1,2,3]);
+        console.log(a, b,c);
+
+        const obj = {
+            string:'zero',
+            yell: function(){
+                console.log(this.string);
+            }
+        };
+
+        const obj2 ={
+            string : 'what'
+        }
+
+        obj.yell(); // zero
+        obj.yell.call(obj2);        // what
+
+        const kim={
+            name:'kim',
+            first:10,
+            second:20
+        }
+
+        function sum(num){
+            return num+this.first + this.second;
+        }
+
+        console.log( sum.call(kim,1000));   // 1030
+
+        // 유사배열(array-like object)
+        /* 배열처럼 인덱스와 lenth 프로퍼티를 가지고 있지만 배열이 아닌 형태
+            arguments, nodeList, HTMLCollections, 문자열 등이 유사배열에 속함.
+            유사배열은 배열 메서드를 사용 할 수 없으므로. 배열 메서드를 사용하기
+            위해서는 Array.from() 사용하여 유사배열을 실제 배열로 변환하면 가능
+
+            유사배열 구별방법 :
+            객체가 length 프로퍼티를 가지고 있고, 키 숫자키(0,1,2)를 프로퍼티
+            이름으로 가지는 경우 유사 배열 가능성이 높음.
+            
+        */
+        function func(p1,p2,p3){
+            console.log(arguments);     // 배열로 관리 => 유사배열
+            console.log(typeof arguments);
+            // console.log(arguments.join());  // 유사배열이라 사용 불가
+            // call, appply 등을 사용하면 가능
+            console.log(Array.prototype.join.call(arguments));
+        }
+
+        func(1,2,3);
+
+        console.log('---------------');
+
+        //bind
+        const bindObj={
+            string : 'zero',
+            yell:function(){
+                console.log(this.string)
+            }
+        }
+
+        const bindObj2={
+            string:'what'
+        };
+
+        let yell2 = bindObj.yell.bind(bindObj2);    // 함수를 반환
+
+        console.log(yell2);
+        yell2();        // 실행
+         bindObj.yell.bind(bindObj2)();
+    </script>
+</body>
+</html>

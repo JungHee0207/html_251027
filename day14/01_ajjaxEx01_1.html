@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Modern, flashy styling while preserving the layout structure
+           - Keep: #header on top, #section below
+           - Add: glassmorphism, gradient, cards, hover effects, responsive */
+        :root{
+            --bg-1: #0f1724;
+            --bg-2: #16283b;
+            --accent-a: #7b61ff;
+            --accent-b: #00d4ff;
+            --glass: rgba(255,255,255,0.06);
+            --glass-strong: rgba(255,255,255,0.09);
+        }
+        *{box-sizing:border-box}
+        html,body{height:100%;}
+        body{
+            margin:0; padding:24px; font-family: 'Segoe UI', Roboto, 'Noto Sans KR', Arial, sans-serif;
+            background: radial-gradient(800px 300px at 10% 10%, rgba(123,97,255,0.06), transparent 10%),
+                        linear-gradient(180deg,var(--bg-1), var(--bg-2));
+            color: #eaf6ff; -webkit-font-smoothing:antialiased;
+        }
+
+        /* Header - stays on top */
+        #header{
+            width:100%;
+            padding:18px 20px;
+            border-radius:12px;
+            background: linear-gradient(90deg, rgba(123,97,255,0.16), rgba(0,212,255,0.08));
+            border: 1px solid rgba(255,255,255,0.06);
+            display:flex; align-items:center; justify-content:space-between;
+            gap:12px; backdrop-filter: blur(6px) saturate(120%);
+            box-shadow: 0 8px 30px rgba(2,8,23,0.6);
+        }
+
+        /* header internal layout */
+        .squad-left{ display:flex; align-items:center; gap:12px }
+        .squad-logo{ width:64px; height:64px; border-radius:14px; display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;
+            background: linear-gradient(135deg,var(--accent-a),var(--accent-b)); color:white; box-shadow:0 8px 20px rgba(0,0,0,0.45);
+        }
+        .squad-info h1{ margin:0; font-size:1.25rem }
+        .squad-meta{ font-size:0.9rem; opacity:0.95 }
+        .squad-right{ text-align:right; font-size:0.9rem; opacity:0.95 }
+
+        /* Section - member area (keeps flex-like feel but with wrapping cards) */
+        #section{
+            margin-top:16px; width:100%;
+            display:flex; gap:16px; flex-wrap:wrap; align-items:flex-start; justify-content:flex-start;
+        }
+
+        /* Member card - modern glass card */
+        .member-card{
+            min-width:260px; max-width:320px; flex:1 1 300px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+            border-radius:12px; padding:14px; border:1px solid rgba(255,255,255,0.04);
+            box-shadow: 0 8px 30px rgba(2,8,23,0.6);
+            transition: transform .3s cubic-bezier(.2,.9,.3,1), box-shadow .3s;
+            overflow:hidden;
+        }
+        .member-card:hover{ transform: translateY(-8px); box-shadow: 0 18px 50px rgba(2,8,23,0.7); }
+
+        .member-header{ display:flex; gap:12px; align-items:center }
+        .member-avatar{ width:56px; height:56px; border-radius:12px; display:flex;align-items:center;justify-content:center;font-weight:700;color:white;
+            background: linear-gradient(135deg,#6a11cb,#2575fc); box-shadow: 0 8px 18px rgba(0,0,0,0.45);
+        }
+        .member-name{ margin:0; font-size:1.05rem }
+        .member-sub{ margin-top:4px; font-size:0.85rem; color:rgba(234,246,255,0.9) }
+
+        .badges{ margin-top:10px; display:flex; gap:8px; flex-wrap:wrap }
+        .badge{ background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)); padding:6px 10px; border-radius:999px; font-size:0.82rem; border:1px solid rgba(255,255,255,0.03) }
+
+        /* small screens: single column */
+        @media (max-width:720px){
+            #section{ justify-content:center }
+            .member-card{ width:100%; max-width:none; flex:1 1 100% }
+            .squad-right{ text-align:left }
+            #header{ flex-direction:column; align-items:flex-start; gap:8px }
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json
+    -->
+
+    <header id="header"></header>
+    <section id="section"></section>
+
+    <script>
+
+        function printData(obj){
+            const header = document.getElementById('header');
+            const section = document.getElementById('section');
+
+            // header markup with subtle logo and meta
+            const logoText = (obj.squadName || 'SQUAD').split(' ').map(s => s[0] || '').slice(0,2).join('').toUpperCase();
+            const hstr = `
+                <div class="squad-left">
+                    <div class="squad-logo">${logoText}</div>
+                    <div class="squad-info">
+                        <h1>${obj.squadName ?? ''}</h1>
+                        <div class="squad-meta">${obj.homeTown ?? ''} • Formed: ${obj.formed ?? ''}</div>
+                    </div>
+                </div>
+                <div class="squad-right">
+                    <div>Secret base: ${obj.secretBase ?? '-'}</div>
+                    <div style="margin-top:6px;font-weight:600">Members: ${Array.isArray(obj.members) ? obj.members.length : 0}</div>
+                </div>
+            `;
+            header.innerHTML = hstr;
+
+            // members as modern cards
+            let membersHTML = '';
+            if (Array.isArray(obj.members)){
+                for (const member of obj.members){
+                    const initials = (member.name || '??').split(' ').map(s => s[0] || '').slice(0,2).join('').toUpperCase();
+                    membersHTML += `<div class="member-card">`;
+                    membersHTML += `<div class="member-header"><div class="member-avatar">${initials}</div><div><h2 class="member-name">${member.name ?? 'Unknown'}</h2><div class="member-sub">Age: ${member.age ?? '-'} • ${member.secretIdentity ?? '-'}</div></div></div>`;
+
+                    if (Array.isArray(member.powers) && member.powers.length){
+                        membersHTML += `<div class="badges">`;
+                        for (const p of member.powers){
+                            membersHTML += `<span class="badge">${p}</span>`;
+                        }
+                        membersHTML += `</div>`;
+                    }
+
+                    membersHTML += `</div>`;
+                }
+            } else {
+                membersHTML = '<p style="color:rgba(255,255,255,0.85)">No members data</p>';
+            }
+
+            section.innerHTML = membersHTML;
+        }
+
+        function dataGet(){
+            fetch('https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json')
+                .then(response => response.json())
+                .then(json => printData(json))
+                .catch(error => console.log(error));
+        }
+
+        dataGet();
+        
+    </script>

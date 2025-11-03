@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="startBtn">게임시작</button>
+    <button id="resetBtn">다시시작</button>
+    <h1 id="comMsg"></h1>
+    숫자 입력 : <input type="text" id="myNum">
+    <button id="tryBtn">게임확인</button>
+    <ol id="tries"></ol>
+
+    <script>
+        /*
+            1. 게임 시작 전 입력 금지.
+            2. 중복 값 X
+            3. 반드시 3자리
+            4. 문자 X
+
+            comNum 배열과, 사용자 value 값의 배열 비교
+
+        */
+        const comMsg = document.getElementById('comMsg');
+        const myNum = document.getElementById('myNum');
+        const tries = document.getElementById('tries');
+        let comNum = [];
+
+        document.getElementById('tryBtn').addEventListener('click', ()=>{
+            if(comNum.length <3){
+                alert('게임시작 버튼을 누르세요');
+                return;
+            }
+
+            if(myNum.value =='' || isNaN(myNum.value) || myNum.value.length != 3 ){
+                alert('숫자 3자리만 입력 가능합니다.');
+                return;
+            };
+
+            let num = [];
+            for(let i=0;i<myNum.value.length;i++){
+                let tNum = Number(myNum.value.substr(i,1));
+                if(i> 0 ){
+                    for(j=0;j<i;j++){
+                        if(num[j] == tNum){
+                            alert('같은 숫자는 입력 할 수 없습니다.');
+                            return;
+                        }
+                    }
+                }
+                num.push(tNum) ;
+            }
+            console.log('mynum:'+ num);
+            let stk = 0;
+            let ball = 0;
+            console.log(comNum.length, num.length);
+
+            for(let a=0;a< comNum.length;a++){
+                for(let b =0;b< num.length;b++){
+                    console.log('비교 ' + comNum[a] , num[b])
+                    if(comNum[a] == num[b]){
+                        if(a==b){
+                            stk++;
+                        }else{
+                            ball++;
+                        }
+                        
+                    }
+                }
+            }
+            let str = '';
+            for(let i=0;i<num.length;i++){
+                str += ` ${num[i]}`;
+            }
+            if(stk ==3){
+                tries.innerHTML += `<li> ${stk} S : ${ball} B (${str}) 게임 종료 </li>`;
+                comNum.length =0;
+            }else{
+                tries.innerHTML += `<li> ${stk} S : ${ball} B (${str}) </li>`;
+            }
+            myNum.value = '';
+            myNum.focus;
+
+        })
+
+        // 게임시작
+        document.getElementById('startBtn').addEventListener('click',()=>{
+            let index = 0;
+            do{
+                let itemp = Math.floor(Math.random()*9) +1;
+                let chk = 0;
+                console.log(index , itemp, comNum.length);
+                if(comNum.length > 0){
+                    for(let i = 0 ; i < comNum.length;i++){
+                        if(comNum[i] == itemp){
+                            chk++;
+                            break;
+                        }
+                    }
+                }
+
+                if(chk == 0){
+                    comNum.push(itemp);
+                    index++;
+                }else if(chk == 1){
+                    chk = 0;
+                }
+                console.log(comNum);
+            }while(comNum.length < 3);
+
+            comMsg.innerText = '컴퓨터가 숫자를 선택 했습니다.';
+            tries.innerHTML ='';
+        });
+
+        // 게임리셋
+        document.getElementById('resetBtn').addEventListener('click',()=>{
+            comMsg.innerText = '게임 시작 버튼을 누르세요';
+
+            for(let i=0;i< comNum.length;i++){
+                comNum[i] =0;
+            }
+            tries.innerHTML='';
+            console.log(comNum);
+        })
+
+
+
+    </script>
+</body>
+</html>

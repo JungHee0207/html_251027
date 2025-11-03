@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>
+        해체(Distructing), 펼침(Spread) 
+        : 자바스크립트의 데이터를 좀 더 유연하게 사용하기 위한 문법 : ES2018
+
+    </h1>
+
+    <script>
+        // distructing
+        let arr = ['a','b','c','d','e'];
+        let first1 = [0];
+
+        let [first, second, third, foruth,fifth='z'] = arr;
+        console.log(first, second, third, foruth, fifth );
+
+        let [kim, park, ...others] = arr;
+        console.log(kim, park, others);
+
+        // data exchange (데이터 값 상호교환)
+        let html = 89;
+        let java = 100;
+
+        // destructing
+        [html, java] = [java, html];
+        console.log(html, java);
+
+        const laptop ={
+            title:'Apple MacBook M1 Pro',
+            won: 200000,
+            cpu:'M1',
+            ram:'8GB',
+            ssd:'256GB',
+            display:'Retina',
+            touchBar:true,
+            core:'8core'
+        };
+
+        console.log(laptop.cpu, laptop.ram);
+
+        let {cpu, ram} = laptop;
+        console.log(cpu, ram);
+
+        let {display, thunderbolt='2ea'} = laptop;
+        console.log(display, thunderbolt);
+
+        let propName = 'won';
+        let {[propName]:price} = laptop;
+        console.log(price);
+
+        let oldArr = ['a','b','c'];
+        let newObj = {...oldArr};
+        console.log(newObj['0']);
+        for(const key in newObj){
+            console.log(newObj[key]);
+        }
+    </script>
+</body>
+</html>

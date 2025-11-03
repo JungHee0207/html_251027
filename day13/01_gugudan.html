@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .user{
+            background-color: burlywood;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        구구단 문제
+    -->
+    <button type="button" id="startBtn">문제 출제</button>
+    <ol id="q"></ol>
+    <button type="button" id="compareBtn">정답 확인</button>
+    <h3 id="print"></h3>
+
+    <script>
+        const ansObj ={};   // 정답을 담을 객체
+        const quizArea = document.getElementById('q');
+        // ans0 : 정답 
+        // ansObj[ans0] = 정답
+        // id => html 파일에서 유일하게 구분이 가능해야 함.
+
+        document.getElementById('startBtn').addEventListener('click',()=>{
+            let count = 0;
+            let q = '';
+
+            do{
+                let dan = makeRandom(2,9);
+                let incre = makeRandom(1,9);
+                let answer  = dan * incre;
+                // 정답을 객체로 저장
+                ansObj[`ans${count}`] = answer;
+
+                // quiz 영역에 뿌리기
+                q += `<li>${dan} * ${incre} = <input type="text" class="user" id="userAns${count}"> </li>`;
+                console.log(q);
+                count++;
+            }while(count<10);
+
+            quizArea.innerHTML = q;
+        });
+
+        function makeRandom(min, max){
+            // 단 2~9 / incre 1~9
+            return Math.floor(Math.random()*(max-min+1)) +min;
+        }
+
+        // 한버만 누를수 있게
+        // 1. 버튼 객체를 disabled로 변경
+        // 객체.disabled = true; => 버튼 실해 막기 / false = 버튼실행 가능하게
+
+        // {once : true} : 이벤트가 트리거 될때  리스터를 자동으로 삭제
+        // 정답 확인
+        document.getElementById('compareBtn').addEventListener('click',()=>{
+            let correct =0;
+            let count = 0;
+
+            const userInput = document.querySelectorAll('.user');
+
+            while(count<10){
+                console.log(userInput[count]);
+                if(Number(userInput[count].value) == ansObj[`ans${count}`]){
+                    correct++;
+                    userInput[count.value += `\t ✔️`];
+                    userInput[count].style.backgroundColor = 'green';
+                }else{
+                    userInput[count].value += `\t ❌`;
+                }
+                count++;
+            }
+            document.getElementById('print').innerText =
+            `정답개수: ${correct}, 정답률: ${(correct / count)*100}`;
+        },{once:true})
+    </script>
+</body>
+</html>
