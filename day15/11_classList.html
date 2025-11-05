@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .abc{
+            list-style: none;
+            padding: 0;
+            
+        }
+    </style>
+</head>
+<body>
+    <h1>
+        classList : DOMTokenList 객체로 리턴
+    </h1>
+
+    <!-- 
+        객체에서 제공하는 별도의 메서드 사용이 가능
+        자주 사용되는 메서드
+        - add() : 클래스 추가
+        - remove() : 클래스 삭제
+        - contains() : 해당 클래스를 포함하는지 확인
+        - toggle() : 토글 (있으면 빼고, 없으면 넣고)
+
+        자바스크립트에서 스타일을 지정할 경우
+        tag.style.** : 넣는 속성의 양이 적을 경우
+        스타일이 많을 경우 class로 미리 스타일을 전부 지정하고,
+        스타일 추가 / 삭제 / 토글하는 형식으로 사용
+    -->
+
+    <ul id="ul" class="ul a list">
+        <li>classList</li>
+        <li>add() / remove() / contains() / toggle()</li>
+        <li>DOMTokenList 객체로 리턴</li>
+    </ul>
+    <button id="btn">ul버튼</button>
+
+    <script>
+        const ul = document.getElementById('ul');
+        console.log(ul);
+        console.log(ul.classList);
+        ul.classList.add('abc')
+        console.log(ul.classList);
+        ul.classList.remove('abc');
+        console.log(ul.classList);
+        console.log(ul.classList.contains('abc'));
+
+        document.getElementById('btn').addEventListener('click',()=>{
+            ul.classList.toggle('abc');
+            console.log(ul.classList);
+        });
+
+    </script>
+
+</body>
+</html>

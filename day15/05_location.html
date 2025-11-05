@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>
+        location 객체는 브라우저의 주소표시줄에 입력에 관련된 객체
+    </h1>
+    <!-- 
+        window.location / window 생략가능.
+
+        - location.href = 'url' : url로 이동 / history 객체에 저장
+        - location.replace('url') : url로 이동 / history 객체에 저장하지 않음
+        - location.assign('url') : url로 이동 / history 객체에 저장
+        - location.reload() : 현재 페이지에서 새로고침
+    -->
+
+    <button id="moveherf">href사용</button>
+    <button id="movereplace">replace사용</button>
+    <button id="moveassign">assign 사용</button>
+    <button id="movereload">reload 사용</button>
+    <a href="06_history.html">06_history</a>
+    <button id="forword">forword</button>
+
+    <script>
+        document.getElementById('forword').onclick =()=>{
+            history.forward();
+        }
+        
+        document.getElementById('moveherf').onclick = ()=>{
+            location.href = 'http://www.naver.com';
+        }
+        document.getElementById('movereplace').onclick = ()=>{
+            location.replace('http://google.com');
+        }
+        document.getElementById('moveassign').onclick = ()=>{
+            location.assign('http://daum.net');
+        }
+        document.getElementById('movereload').onclick = ()=>{
+            location.reload();
+            
+        }
+    </script>
+</body>
+</html>

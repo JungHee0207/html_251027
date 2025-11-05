@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="h">
+        element의 속성
+        - 태그의 속성(attribute) / - css(style) 속성
+    </h1>
+
+    <!-- 
+        - 태그의 속성은 태그가 갖는 속성이기 때문에 속성명을 그대로 사용
+        tag.id, tab.value, tag.name ...
+
+        - class 처럼 값을여러개 갖는 속성들은 별도의 명칭을 사용
+        tag.classList => 배열처럼 리턴
+
+        - css 관련 속성들은 style. 을 통해 접근 가능
+        tag.style.color / tag.style.font-size X tag.style.fontSize O
+        - font-size 처럼 -는 카멜케이스로 변경하여 사용.
+    -->
+
+    <img src="../image/강아지.jpg" alt="pic" id="imgTag" class="a b c d img">
+    
+    <h1 id="h1">색상변경</h1>
+    <input type="color" id="colorValue">
+    <button id="changeBtn"> 변경</button>
+
+    <script>
+        document.getElementById('changeBtn').onclick=()=>{
+            let color = document.getElementById('colorValue').value;
+            document.getElementById('h1').style.color = color;
+        };
+
+        document.getElementById('colorValue').addEventListener('input', ()=>{
+            let color = document.getElementById('colorValue').value;
+            document.getElementById('h').style.color = color;
+        })
+
+        const imgTag = document.getElementById('imgTag');
+
+        console.log(imgTag);
+        console.log(imgTag.id);
+        console.log(imgTag.src);
+        console.log(imgTag.classList);
+
+        // 표시 가능하다는 것 설덩도 할 수 있다는 의미
+
+    </script>
+</body>
+</html>

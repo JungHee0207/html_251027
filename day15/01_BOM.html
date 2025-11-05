@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>
+        BOM : Browser Object Model
+        브라우저의 객체를 지칭하는 용어(window 객체)
+    </h1>
+    <h1>
+        DOM ; Document Object Model
+        문서의 객체를 지칭하는 용어 (HTML 안에 입력된 객체)
+    </h1>
+    <ul>
+        <li id="ih">
+            window.innerHeight : 화면의 툴바를 제외한 안쪽의 높이 => 
+        </li>
+        <li id="iw">
+            window.innerWidth : 스크롤바를 포함한 너비 =>
+        </li>
+        <li>
+            윈도우의 종류, 브라우저의 종류, 모니터 화면 배율 등에 따라 달라짐
+        </li>
+    </ul>
+    
+    <script>
+        const ih = document.getElementById('ih');
+        const iw = document.getElementById('iw');
+
+        ih.innerText += window.innerHeight;
+        iw.innerText += window.innerWidth;
+    </script>
+</body>
+</html>

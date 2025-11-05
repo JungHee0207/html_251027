@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 300px;
+            height: 300px;
+            border: 1px solid black;
+            position: absolute;
+            align-items: center;
+            background-color: aqua;
+            display: list-item;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        div>input{
+            width: 200px;
+            height: 50px;
+        }
+        div>button{
+            width: 200px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+    <input type="text" id="id" placeholder="8자 이상 영어,숫자만 가능">
+    <input type="password" id="pw" placeholder="8자 이상 영어, 숫자, 특수문자만 가능">
+    <button type="button" id="login" disabled>로그인</button>
+        <h3></h3>
+    </div>
+
+    <script>
+        // event input 
+        // id : 8자 이상
+        // pw : 영어, 숫자, 특수문자 1개씩을 포함한 8자 이상
+        // 두 조건이 맞을 때만 버튼에 disable 상태 해지
+        // 객체.disabled = true => 비활성화 상태
+        // 객체.disabled = false => 활성화 상태
+        // regExp 
+        const id = document.getElementById('id');
+        const pw = document.getElementById('pw');
+        const loginBtn = document.getElementById('login');
+        
+
+        id.addEventListener('input',inputChk);
+        pw.addEventListener('input',inputChk);
+
+        function inputChk(e){
+            const idVal = id.value.trim();
+            const pwVal = pw.value;
+
+            // 기본으로 비활성화
+            loginBtn.disabled = true;
+
+            // id: 알파벳(대소문자) + 숫자, 8자 이상
+            const idReg = /^[A-Za-z0-9]{8,}$/;
+            // pw: 최소 8자, 문자(대소문자 상관없음) 1개, 숫자 1개, 특수문자 1개
+            // (원하시면 대문자/소문자 구분 규칙을 다시 추가할 수 있습니다)
+            const pwReg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[^a-zA-Z0-9]).{8,}$/;
+
+            // 디버그 로그: 어떤 조건이 실패하는지 확인하려면 콘솔을 보세요
+            console.log('idVal:', idVal, 'idOk:', idReg.test(idVal), 'pwOk:', pwReg.test(pwVal));
+
+            const idOk = idReg.test(idVal);
+            const pwOk = pwReg.test(pwVal);
+            const status = document.querySelector('h3');
+            if (idOk && pwOk) {
+                loginBtn.disabled = false;
+                status.textContent = '입력 유효 — 로그인 가능합니다.';
+                status.style.color = 'lightgreen';
+            } else {
+                loginBtn.disabled = true;
+                status.textContent = '아이디/비밀번호 규칙을 확인하세요.';
+                status.style.color = '#ffd1d1';
+            }
+            
+        }
+
+        loginBtn.addEventListener('click', async () => {
+            if (loginBtn.disabled) return; // 안전장치
+            const payload = { id: id.value.trim(), pw: pw.value };
+            const status = document.querySelector('h3');
+            try {
+                loginBtn.disabled = true;
+                status.textContent = '전송중...';
+                status.style.color = '#fff';
+
+                // 실제 전송 예시 (서버 URL을 /api/login 등으로 바꿔 사용)
+                // const resp = await fetch('/api/login', {
+                //   method: 'POST',
+                //   headers: { 'Content-Type': 'application/json' },
+                //   body: JSON.stringify(payload)
+                // });
+                // if (!resp.ok) throw new Error('서버 오류 ' + resp.status);
+                // const data = await resp.json();
+
+                // 현재는 모의 전송으로 동작
+                await new Promise(r => setTimeout(r, 700));
+                status.textContent = '전송 성공(모의)';
+                status.style.color = 'lightgreen';
+                // 실제 환경: 로그인 성공 시 리다이렉트
+                // location.href = '/dashboard';
+            } catch (err) {
+                console.error(err);
+                status.textContent = '전송 실패: ' + (err.message || err);
+                status.style.color = '#ffd1d1';
+            } finally {
+                loginBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>

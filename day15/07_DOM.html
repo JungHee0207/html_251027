@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="h1">
+        DOM ; Document Object Model
+        문서의 객체를 지칭하는 용어 (HTML 안에 입력된 객체)
+    </h1>
+    <ul>
+        
+        <li class="list">
+            html 하위에 있는 모든 태그들(element) / 
+            속성(attribute) = 프로퍼티(property)
+        </li>
+        <li class="list">
+            element 가지고 올때 : getElementBy** / Id, ClassName, TagName
+        </li>
+        <li class="list">
+            getElementById : 단ㅇ리 엘리먼트 리턴
+        </li>
+        <li>
+            byClassName / byTagName : 복수 엘리먼트 리턴
+        </li>
+        <li>
+            HTMLCollection 타입의 유사 배열로 리턴 index 사용하여 선택
+        </li>
+    </ul>
+    <span> <h1></h1></span>
+
+    <script>
+        const h1 = document.getElementById('h1');
+        console.log(h1);
+
+        const list = document.getElementsByClassName('list');
+        console.log(list);
+
+        const ul = document.getElementsByTagName('ul');
+        console.log(ul);
+        console.log(ul[0].children);
+        console.log(ul[0].children[0]);
+
+        // span / h
+        const h1TagName = document.getElementsByTagName('h1');
+        console.log(h1TagName);
+
+        const span1TagName = document.getElementsByTagName('span');
+        console.log(span1TagName[0].children);
+
+    </script>
+</body>
+</html>

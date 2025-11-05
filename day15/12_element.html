@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>
+        element 생성방법
+
+    </h1>
+    <!-- 
+        `<li> 값 </li>` => innerHTML 로 추가
+
+        createElement : element 추가
+        appendChile : 대상의 엘리먼트의 자식으로 추가
+    -->
+
+    <button id="btn1">li 한번에 추가</button>
+    <button id="btn2">li 한번에 하나씩 추가</button>
+
+    <button id="btn3">li 한번에 추가</button>
+    <button id="btn4">li 한번에 하나씩 추가</button>
+
+    <hr>
+    <ul id="ul"></ul>
+    <hr>
+    <ol id="ol"></ol>
+
+    <script>
+        const datas=['HTML','CSS','JavaScript','SQL','JAVA'];
+        const ul = document.getElementById('ul');
+        const ol = document.getElementById('ol');
+        let index = 0;
+
+        document.getElementById('btn4').addEventListener('click',()=>{
+            let str = datas.shift() ; // 배열의 앞에서 데이터 빼기
+            
+            if(str !== undefined){
+                let li = document.createElement('li');  // <li></li>
+                li.textContent = str;     // textContent / innerText 
+                ol.appendChild(li); // ul의 자식으로 추가
+            }
+        });
+
+        // createEliement => appendChild
+        document.getElementById('btn3').addEventListener('click',()=>{
+            ul.innerHTML = '';
+            datas.forEach(v=>{
+                let li = document.createElement('li');  // <li></li>
+                li.textContent = v;     // textContent / innerText 
+                ul.appendChild(li); // ul의 자식으로 추가
+            });
+        });
+
+        // btn1 을 누르면 datas를 ul에 한번에 추가 => li 를 생성해서 추가
+        document.getElementById('btn1').addEventListener('click',()=>{
+            let str = '';
+
+            datas.forEach(v=>{
+                str += `<li> ${v} </li>`;
+            })
+            ul.innerHTML = str;
+        });
+
+        // btn2 를 누르면 datas를 ol에 하나씩 추가 => li를 생성해서 추가
+        document.getElementById('btn2').addEventListener('click',()=>{
+            let str = datas.shift() ; // 배열의 앞에서 데이터 빼기
+
+            if(str !== undefined){
+                ol.innerHTML += `<li> ${str} </li>`;
+            }
+            /*
+            ol.innerHTML += `<li> ${datas[index]} </li>`;
+            index++;
+            if(index == datas.length){
+                index =0;
+            } 
+                */
+        });
+
+    </script>
+</body>
+</html>

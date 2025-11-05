@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="makeBtn">element Create</button>
+    <div id="zone"></div>
+    
+    <script>
+        const zone = document.getElementById('zone');
+
+        document.getElementById('makeBtn').addEventListener('click',()=>{
+            let newBtn = `<button id="newBtn">new btn</button>`;
+            zone.innerHTML = newBtn;
+
+        });
+
+        // 동적으로 생성되는 버튼은 해당 functon 밖에서는 인지가 안됨.
+        /*document.getElementById('newBtn').addEventListener('click',()=>{
+            console.log('newBtn');
+        })
+        */
+
+        // 문서 전체에 리스너를 장착 => element target 확인
+        document.addEventListener('click', (e)=>{
+            console.log(e.target);
+            if(e.target.id == 'newBtn'){
+                zone.innerHTML += `<h3>newBtn이 클릭되었습니다.</h3>`;
+            }
+        })
+
+
+        /*
+        const zone = document.getElementById('zone');
+
+        document.getElementById('makeBtn').addEventListener('click',()=>{
+            let button = document.createElement('button');
+            console.log(button);
+            button.innerText = 'new Btn';
+            button.id = 'newBtn';
+            button.type = 'button';
+            button.addEventListener('click',()=>{
+                let label = document.createElement('h1');
+
+            label.innerText = 'newBtn이 클릭 되었습니다.';
+            zone.appendChild(label);
+            });
+
+            zone.appendChild(button);
+            console.log(zone);
+
+        });
+
+        */
+
+    </script>
+</body>
+</html>
